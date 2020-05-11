@@ -1,0 +1,70 @@
+@charset "ISO-8859-1";
+
+.containerSamsung {
+	margin-top: 50px;
+	margin-left: 25px;
+}
+
+.TituloSamsung{
+	margin-left: -40px;
+}
+
+.TopoSamsung{
+	margin-left: -40px;
+	font-size: 12px;		
+}
+
+/* link que ainda não foi visitado */
+a:link {
+   color: red;
+}
+
+/* link que foi visitado */
+a:visited {
+    color: black;
+}
+
+/* mouse over */
+a:hover {
+    color: grey;
+}
+
+/* link selecionado */
+a:active {
+    color: blue;
+}
+
+.ContainerProdutos {
+	padding-top: 20px;
+	height: 250px;
+	width: 190px;
+	display: inline-block;
+	margin-right: 81px;
+	margin-bottom: 80px;
+	cursor: pointer;
+	text-align: center;
+}
+
+.spanValor{
+	text-align: center;
+	font-size: 12px;
+	color: black;
+	font-weight: bold;
+}
+
+.ContainerProdutos:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.ContainerProdutos span{
+	display: inline-block;
+	text-align: center;
+	color: black;
+	font-weight: bold;
+}
+
+
+.ContainerProdutos a:link{
+	text-decoration:none;
+}
