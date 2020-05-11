@@ -31,6 +31,7 @@ public class EfetuarLogoffCli implements Command {
 			session.setAttribute("logado", null);
 			System.out.println("Logoff efetuado com sucesso!!	");
 			session.setAttribute("logNome",null);
+			session.invalidate();
 		}	
 		response.sendRedirect("TelaInicial.jsp");
 	}

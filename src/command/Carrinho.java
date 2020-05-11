@@ -17,6 +17,10 @@ public class Carrinho implements Command {
 	@Override
 	public void executar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		if(request.getSession().getAttribute("idCliente")==null) {
+			response.sendRedirect("Login.jsp");
+			return ;
+		}
 		int idCliente = (Integer)request.getSession().getAttribute("idCliente");
 		
 		PedidoService ps = new PedidoService();
