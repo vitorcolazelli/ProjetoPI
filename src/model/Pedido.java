@@ -10,6 +10,10 @@ public class Pedido {
 	private ArrayList<ItemPedido> itens;
 	private int formaPagamento_idPagamento;
 	
+	public Pedido() {
+		itens = new ArrayList<ItemPedido>();
+	}
+	
 	public Pedido(int idPedido, float valorTotal, String status, int cliente_idCliente, int formaPagamento_idPagamento) {
 		this.idPedido = idPedido;
 		this.valorTotal = valorTotal;

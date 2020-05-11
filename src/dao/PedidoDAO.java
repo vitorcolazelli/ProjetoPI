@@ -9,11 +9,13 @@ import model.Pedido;
 
 public class PedidoDAO {
 	public int criar(Pedido pedido) {
-		String sqlInsert = "INSERT INTO pedido(valorTotal) VALUES (?)";
-
+		String sqlInsert = "INSERT INTO pedido(valorTotal, cliente_idCliente, f_pagamento_idPagamento, status) VALUES (?, ?, ?, ?)";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
 			stm.setFloat(1, pedido.getValorTotal());
+			stm.setInt(2, pedido.getCliente_idCliente());
+			stm.setInt(3, pedido.getFormaPagamento_idPagamento());
+			stm.setString(4, pedido.getStatus());
 			stm.execute();
 			String sqlQuery = "SELECT LAST_INSERT_ID()";
 			try (PreparedStatement stm2 = conn.prepareStatement(sqlQuery); ResultSet rs = stm2.executeQuery();) {
@@ -30,11 +32,12 @@ public class PedidoDAO {
 	}
 
 	public void atualizar(Pedido pedido) {
-        String sqlUpdate = "UPDATE pedido SET ValorTotal=? idPedido=?";
+        String sqlUpdate = "UPDATE pedido SET ValorTotal=?, status = ? WHERE idPedido=?";
         try (Connection conn = ConnectionFactory.obtemConexao();
                 PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
             stm.setFloat(1, pedido.getValorTotal());
-            stm.setInt(2, pedido.getIdPedido());
+            stm.setString(2, pedido.getStatus());
+            stm.setInt(3, pedido.getIdPedido());
             stm.execute();
         } catch (Exception e) {
             e.printStackTrace();
@@ -120,4 +123,25 @@ public class PedidoDAO {
 		return lista;
 	}
 	
+	public ArrayList<Pedido> listarPedidosCarrinho(int idCliente) {
+		Pedido pedido;
+		ArrayList<Pedido> lista = new ArrayList<>();
+		String sqlSelect = "SELECT idPedido, ValorTotal FROM Pedido";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					pedido = new Pedido();
+					pedido.setIdPedido(rs.getInt("idPedido"));
+					pedido.setValorTotal(rs.getFloat("valorTotal"));
+					lista.add(pedido);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return lista;
+	}
 }
