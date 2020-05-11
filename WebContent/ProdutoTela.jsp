@@ -42,7 +42,7 @@
 						<option value="${produto.cor}">${produto.cor}</option>
 					</select>
 					<div class="btm">
-						<a type="button" class="btn btn-danger btn-lg" href="controller.do?command=InserirCarrinho&idProduto=${produto.idProduto}">ADICIONAR AO CARRINHO</a>
+						<a type="button" class="btn btn-danger btn-lg" href="controller.do?command=AdicionarCarrinho&idProduto=${produto.idProduto}">ADICIONAR AO CARRINHO</a>
 					</div>
 				</div>
 				<img width="350px" src="./imagens/ImagemMercado.jpg">

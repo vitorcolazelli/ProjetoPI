@@ -30,6 +30,13 @@
 						name="valorTotal" id="valorTotal" maxlength="50" />
 				</div>
 			</div>
+			<div class="row">
+				<div class="form-group col-md-12 linha">
+					<label for="status">Status:
+					</label> <input value="${pedido.status}" type="text" class="form-control"
+						name="status" id="status" maxlength="50" />
+				</div>
+			</div>
 			<hr />
 			<div class="containerLogin">
 				<div id="actions" class="row">

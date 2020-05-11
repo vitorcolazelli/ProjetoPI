@@ -18,11 +18,7 @@ public class VisualizarProdutoPagina implements Command{
 		
 		request.setCharacterEncoding("UTF-8"); 
 		String pIdProduto = request.getParameter("idProduto");
-		String pNome = request.getParameter("nome");
-		String pValor = request.getParameter("valor");
-		String pCapacidade = request.getParameter("capacidade");
-		String pCor = request.getParameter("cor");
-		double valor = 0.0;
+		
 		int idProduto = 1;
 		
 		try {
@@ -31,18 +27,8 @@ public class VisualizarProdutoPagina implements Command{
 			
 		}
 		
-		try {
-			valor = Double.parseDouble(pValor);
-		}catch (NumberFormatException e) {
-			
-		}
-		
 		Produto produto = new Produto();
 		produto.setIdProduto(idProduto);
-		produto.setNome(pNome); 
-		produto.setValor(valor);
-		produto.setCapacidade(pCapacidade);
-		produto.setCor(pCor);	
 
 		ProdutoService ps = new ProdutoService();
 		RequestDispatcher view = null;

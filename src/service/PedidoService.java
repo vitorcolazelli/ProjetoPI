@@ -1,5 +1,6 @@
 package service;
 
+import model.ItemPedido;
 import model.Pedido;
 
 import java.util.ArrayList;
@@ -31,5 +32,17 @@ public class PedidoService {
 
 	public ArrayList<Pedido> listarPedidos(String chave) {
 		return dao.listarPedidos(chave);
+	}
+	
+	public Pedido listarPedidosCarrinho(int idCliente) {
+		return dao.listarPedidosCarrinho(idCliente);
+	}
+	
+	public ArrayList<ItemPedido> ListarItensPedido(int idPedido) {
+		return dao.ListarItensPedido(idPedido);
+	}
+	
+	public void inserirCarrinho(int idPedido, int idProduto) {
+		dao.inserirCarrinho(idPedido, idProduto);
 	}
 }

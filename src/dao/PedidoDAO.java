@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import model.ItemPedido;
 import model.Pedido;
 
 public class PedidoDAO {
@@ -32,17 +34,17 @@ public class PedidoDAO {
 	}
 
 	public void atualizar(Pedido pedido) {
-        String sqlUpdate = "UPDATE pedido SET ValorTotal=?, status = ? WHERE idPedido=?";
-        try (Connection conn = ConnectionFactory.obtemConexao();
-                PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-            stm.setFloat(1, pedido.getValorTotal());
-            stm.setString(2, pedido.getStatus());
-            stm.setInt(3, pedido.getIdPedido());
-            stm.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+		String sqlUpdate = "UPDATE pedido SET ValorTotal=?, status = ? WHERE idPedido=?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setFloat(1, pedido.getValorTotal());
+			stm.setString(2, pedido.getStatus());
+			stm.setInt(3, pedido.getIdPedido());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void excluir(int idPedido) {
 		String sqlDelete = "DELETE FROM pedido WHERE idPedido = ?";
@@ -58,16 +60,18 @@ public class PedidoDAO {
 	public Pedido carregar(int idPedido) {
 		Pedido pedido = new Pedido();
 		pedido.setIdPedido(idPedido);
-		String sqlSelect = "SELECT idPedido, ValorTotal FROM Pedido WHERE Pedido.idPedido = ?";
+		String sqlSelect = "SELECT * FROM Pedido WHERE idPedido = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, pedido.getIdPedido());
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
 					pedido.setValorTotal(rs.getFloat("valorTotal"));
+					pedido.setStatus(rs.getString("status"));
 				} else {
 					pedido.setIdPedido(-1);
 					pedido.setValorTotal(0);
+					pedido.setStatus(null);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -122,19 +126,50 @@ public class PedidoDAO {
 		}
 		return lista;
 	}
-	
-	public ArrayList<Pedido> listarPedidosCarrinho(int idCliente) {
-		Pedido pedido;
-		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT idPedido, ValorTotal FROM Pedido";
+
+	public Pedido listarPedidosCarrinho(int idCliente) {
+		Pedido pedido = null;
+		String sqlSelect = "SELECT * FROM Pedido WHERE status = 'carrinho' AND cliente_idCliente = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, idCliente);
 			try (ResultSet rs = stm.executeQuery();) {
-				while (rs.next()) {
+				if (rs.next()) {
 					pedido = new Pedido();
 					pedido.setIdPedido(rs.getInt("idPedido"));
 					pedido.setValorTotal(rs.getFloat("valorTotal"));
-					lista.add(pedido);
+					pedido.setCliente_idCliente(rs.getInt("cliente_idCliente"));
+					pedido.setFormaPagamento_idPagamento(rs.getInt("f_Pagamento_idPagamento"));
+					pedido.setStatus(rs.getString("status"));
+
+				} else {
+					pedido = new Pedido();
+					pedido.setCliente_idCliente(idCliente);
+					pedido.setStatus("carrinho");
+					criar(pedido);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return pedido;
+	}
+
+	public ArrayList<ItemPedido> ListarItensPedido(int idPedido) {
+		ArrayList<ItemPedido> lista = new ArrayList<>();
+		String sqlSelect = "SELECT * FROM ItemPedido WHERE idPedido = ?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, idPedido);
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					ItemPedido item = new ItemPedido();
+					item.setIdPedido(idPedido);
+					item.setIdProduto(rs.getInt("idProduto"));
+					item.setQuantidade(rs.getInt("quantidade"));
+					lista.add(item);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -143,5 +178,31 @@ public class PedidoDAO {
 			System.out.print(e1.getStackTrace());
 		}
 		return lista;
+	}
+
+	public void inserirCarrinho(int idPedido, int idProduto) {
+		String sqlSelect = "SELECT 1 FROM itemPedido WHERE idPedido=? AND idProduto=?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, idPedido);
+			stm.setInt(2, idProduto);
+			try (ResultSet rs = stm.executeQuery();) {
+				String query = "insert into itempedido(quantidade, idPedido, idProduto) values (?,?,?)";
+				int qtdSoma = 1;
+				if (rs.next()) {
+					query = "update itempedido set quantidade = quantidade + ? where idPedido = ? and idProduto = ?";
+				}
+				try (PreparedStatement stm2 = conn.prepareStatement(query);) {
+					stm2.setInt(1, qtdSoma);
+					stm2.setInt(2, idPedido);
+					stm2.setInt(3, idProduto);
+					stm2.executeUpdate();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
 	}
 }

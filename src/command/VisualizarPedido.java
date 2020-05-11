@@ -6,7 +6,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Pedido;
 import service.PedidoService;
@@ -18,7 +17,6 @@ public class VisualizarPedido implements Command{
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8"); 
 		String pIdPedido = request.getParameter("idPedido");
-		String pValorTotal = request.getParameter("valorTotal");
 		
 		int idPedido = -1;
 		try {
@@ -27,20 +25,11 @@ public class VisualizarPedido implements Command{
 		
 		}
 		
-		float valorTotal = 0;
-		try {
-			valorTotal = Float.parseFloat(pValorTotal);
-		} catch (NumberFormatException e) {
-		
-		}
-		
 		Pedido pedido = new Pedido();
 		pedido.setIdPedido(idPedido);
-		pedido.setValorTotal(valorTotal);
 		
 		PedidoService ps = new PedidoService();
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		
 		pedido = ps.carregar(pedido.getIdPedido());
 		request.setAttribute("pedido", pedido);

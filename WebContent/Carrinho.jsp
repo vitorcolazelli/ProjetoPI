@@ -16,12 +16,12 @@
 	<div id="main" class="container">
 		<h1 class="titulo">Seu Carrinho</h1>
 		<c:choose>
-			<c:when test="${not empty lista}">
-				<c:forEach var="produto" items="${lista}">
+			<c:when test="${not empty listaCarrinho}">
+				<c:forEach var="produto" items="${listaCarrinho}">
 					<div>
-						<img class="imgProduto" src="data:image/jpg;base64,${produto.base64Image}">
-						<strong>${produto.nome}</strong>
-						<p class="valor">${produto.valor}</p>
+						<img class="imgProduto" src="data:image/jpg;base64,${produto.produto.base64Image}">
+						<strong>${produto.produto.nome}</strong>
+						<p class="valor">${produto.produto.valor}</p>
 					</div>
 				</c:forEach>
 			</c:when>

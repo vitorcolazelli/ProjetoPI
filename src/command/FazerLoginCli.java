@@ -57,6 +57,7 @@ public class FazerLoginCli implements Command{
 			HttpSession session = request.getSession();
 			cliente = as.carregarEmail(cliente.getEmail());
 			session.setAttribute("logado", cliente);
+			session.setAttribute("idCliente", cliente.getIdCliente());
 			session.setAttribute("logNome", cliente.getNome());
 			System.out.println("logou" + cliente);
 			

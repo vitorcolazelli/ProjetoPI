@@ -17,9 +17,16 @@ public class AlterarPedido implements Command {
 	@Override
 	public void executar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		String pIdPedido = request.getParameter("idPedido");
 		String pValorTotal = request.getParameter("valorTotal");
+		String pStatus = request.getParameter("status");
+		
+		float valorTotal = 0.0f;
+		try {
+			valorTotal = Float.parseFloat(pValorTotal);
+		}catch(NumberFormatException e) {
+			
+		}
 		
 		int idPedido = -1;
 		try {
@@ -28,16 +35,10 @@ public class AlterarPedido implements Command {
 		
 		}
 		
-		float valorTotal = -1;
-		try {
-			valorTotal = Float.parseFloat(pValorTotal);
-		} catch (NumberFormatException e) {
-		
-		}
-		
 		Pedido pedido = new Pedido();
 		pedido.setIdPedido(idPedido);
-		pedido.setValorTotal(valorTotal);	
+		pedido.setValorTotal(valorTotal);
+		pedido.setStatus(pStatus);
 		
 		PedidoService cs = new PedidoService();
 		RequestDispatcher view = null;

@@ -4,6 +4,11 @@ public class ItemPedido {
 	private int idPedido;
 	private int idProduto;
 	private int quantidade;
+	private Produto produto;
+	
+	public ItemPedido() {
+		
+	}
 	
 	public ItemPedido(int idPedido, int idProduto, int quantidade) {
 		this.idPedido = idPedido;
@@ -30,5 +35,11 @@ public class ItemPedido {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
 }
