@@ -29,5 +29,6 @@ hs_err_pid*
 ### Java-Web ###
 ## ignoring target file
 target/
+build/
 
 # End of https://www.gitignore.io/api/java,java-web
