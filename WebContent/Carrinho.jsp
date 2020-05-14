@@ -52,7 +52,7 @@
 						</tr>
 					</thead>
 					<tbody>
-					<c:set var = "total" value = "${0}"/>
+					<c:set var="total" value="${0}"/>
 						<c:forEach var="produto" items	="${listaCarrinho}">
 							<tr>
 							
@@ -79,14 +79,14 @@
 								</td>
 								
 							</tr>
-							<c:set var = "total" value = "${total + (produto.produto.valor*produto.quantidade)}"/>
+							<c:set var="total" value="${total + (produto.produto.valor*produto.quantidade)}"/>
 						</c:forEach>
 					</tbody>
 				</table>
 				
 				<div class="divBtn">
-				<p>Subtotal <strong><span class="preco"><c:out value = "${total}"/></span></strong></p>
-				<p class="frete">Frete calculado no checkout</p>
+					<p>Subtotal <strong><span class="preco"><c:out value="${total}"/></span></strong></p>
+					<p class="frete">Frete calculado no checkout</p>
 					<a class="btn btn-outline-danger" href="TelaInicial.jsp" role="button">VOLTAR À LOJA</a>
 					<a class="btn btn-outline-danger" href="ConcluirCompra.jsp" role="button">FINALIZAR PEDIDO</a>
 				

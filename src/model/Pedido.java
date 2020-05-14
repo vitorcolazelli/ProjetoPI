@@ -12,14 +12,6 @@ public class Pedido {
 	private int formaPagamento_idPagamento;
 	private Date dataPedido;
 	
-	public Date getDataPedido() {
-		return dataPedido;
-	}
-
-	public void setDataPedido(Date dataPedido) {
-		this.dataPedido = dataPedido;
-	}
-
 	public Pedido() {
 		itens = new ArrayList<ItemPedido>();
 	}
@@ -88,5 +80,13 @@ public class Pedido {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	
+	public Date getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(Date dataPedido) {
+		this.dataPedido = dataPedido;
 	}
 }
