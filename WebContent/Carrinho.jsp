@@ -32,7 +32,6 @@
 			$('.qtdProd')
 			.on('change', changeqtd);
 	  });
-	
 </script>
 	</head>
 <body>
@@ -61,7 +60,6 @@
 										<img class="imgProduto" src="data:image/jpg;base64,${produto.produto.base64Image}">
 										<strong class="nome">${produto.produto.nome}</strong>
 									</a>
-									
 									<a class="text-danger remove" href="controller.do?command=ExcluirCarrinho&idPedido=${produto.idPedido}&idProduto=${produto.idProduto}">Remover do carrinho</a>
 								</td>
 								<td>
@@ -88,8 +86,7 @@
 					<p>Subtotal <strong><span class="preco"><c:out value="${total}"/></span></strong></p>
 					<p class="frete">Frete calculado no checkout</p>
 					<a class="btn btn-outline-danger" href="TelaInicial.jsp" role="button">VOLTAR À LOJA</a>
-					<a class="btn btn-outline-danger" href="ConcluirCompra.jsp" role="button">FINALIZAR PEDIDO</a>
-				
+					<a class="btn btn-outline-danger" href="controller.do?command=CarregarPedido" role="button">FINALIZAR PEDIDO</a>
 				</div>
 				<div class="clear"></div>
 			</c:when>
