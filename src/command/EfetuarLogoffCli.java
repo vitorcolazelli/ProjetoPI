@@ -20,19 +20,12 @@ public class EfetuarLogoffCli implements Command {
 		request.setCharacterEncoding("UTF-8");
 		
 		HttpServletRequest req = (HttpServletRequest) request;
-		HttpSession session = req.getSession();
-		
-		Cliente cliente = (Cliente)session.getAttribute("logado");
-		ClienteService cs = new ClienteService();
-		
-		
-		if(cs.validar(cliente))
-		{
+		HttpSession session = req.getSession();	
+
 			session.setAttribute("logado", null);
 			System.out.println("Logoff efetuado com sucesso!!	");
 			session.setAttribute("logNome",null);
-			session.invalidate();
-		}	
+			session.invalidate();	
 		response.sendRedirect("TelaInicial.jsp");
 	}
 	

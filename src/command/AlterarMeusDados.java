@@ -6,6 +6,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Cliente;
 import service.ClienteService;
@@ -15,6 +16,7 @@ public class AlterarMeusDados implements Command {
 	@Override
 	public void executar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		
 		String pIdCliente = request.getParameter("idCliente");
 		String pNome = request.getParameter("nome");
@@ -34,8 +36,8 @@ public class AlterarMeusDados implements Command {
 		
 		try {
 			idCliente = Integer.parseInt(pIdCliente);
-		}catch (NumberFormatException e) {
-			
+		}catch (NumberFormatException e) { 
+			throw new ServletException(e);
 		}
 		
 		Cliente cliente = new Cliente();
@@ -58,6 +60,10 @@ public class AlterarMeusDados implements Command {
 		RequestDispatcher view = null;
 		
 		cs.atualizar(cliente);
+		HttpSession session = request.getSession();
+		session.setAttribute("logado", cliente);
+		session.setAttribute("idCliente", cliente.getIdCliente());
+		session.setAttribute("logNome", cliente.getNome());
 		request.setAttribute("cliente", cliente);
 		view = request.getRequestDispatcher("TelaInicial.jsp");
 		view.forward(request, response);

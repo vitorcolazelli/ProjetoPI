@@ -85,7 +85,7 @@
 				</table>
 				
 				<div class="divBtn">
-				<p>Subtotal <span class="preco"><c:out value = "${total}"/></span></p>
+				<p>Subtotal <strong><span class="preco"><c:out value = "${total}"/></span></strong></p>
 				<p class="frete">Frete calculado no checkout</p>
 					<a class="btn btn-outline-danger" href="TelaInicial.jsp" role="button">VOLTAR À LOJA</a>
 					<a class="btn btn-outline-danger" href="ConcluirCompra.jsp" role="button">FINALIZAR PEDIDO</a>
