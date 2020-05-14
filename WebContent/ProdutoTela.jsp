@@ -10,6 +10,22 @@
 <title>Darkcell! - Explosão de Preços Baixo</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/ProdutoTela.css" rel="stylesheet">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+<script>
+	
+	$(document).ready(function(){
+		var changeval = function () {
+		       var p = $(this).text();
+		       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
+		       $(this).text(nval);
+		    }
+
+		     $('.preco')
+		    .each(changeval)
+		    .on('change', changeval);
+	 });
+		     </script>
 </head>
 <body>
 	<c:import url="header.jsp" />
@@ -34,7 +50,7 @@
 				<h2 class="TituloProduto" align="left">
 					<strong>${produto.nome}</strong>
 				</h2>
-				<p class="valor">R$ ${produto.valor}</p>
+				<span class="preco"> ${produto.valor}</span>
 				<div class="divCapacid">
 					<h5>Capacidade:</h5>
 					<select>
@@ -58,7 +74,6 @@
 		</div>
 	</div>
 	<c:import url="footer.jsp" />
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

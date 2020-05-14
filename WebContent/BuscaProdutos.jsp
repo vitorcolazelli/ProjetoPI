@@ -9,6 +9,22 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link href="css/bootstrap.min.css" rel="stylesheet">
   	<link href="css/BuscaProdutos.css" rel="stylesheet">
+  		<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+	
+	$(document).ready(function(){
+		var changeval = function () {
+		       var p = $(this).text();
+		       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
+		       $(this).text(nval);
+		    }
+
+		     $('.preco')
+		    .each(changeval)
+		    .on('change', changeval);
+	 });
+		     </script>
 </head>
 <body>
 	<c:import url="header.jsp"/>
@@ -41,7 +57,7 @@
 								<img  class="img_produto" height="180px" width="180px" src="data:image/jpg;base64,${produto.base64Image}">
 								<span>${produto.nome}</span>
 								<br>
-								<span class="spanValor">${produto.valor}</span>
+								<span class="preco">${produto.valor}</span>
 							</a> 
 						</div>
 					</c:forEach>
@@ -59,7 +75,6 @@
 		</div>
 	</div>
 	<c:import url="footer.jsp"/>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+
 </body>
 </html>

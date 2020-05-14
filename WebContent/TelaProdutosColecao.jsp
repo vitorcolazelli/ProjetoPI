@@ -7,6 +7,23 @@
 <head>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/TelaApple.css" rel="stylesheet">
+
+<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+<script>
+	
+	$(document).ready(function(){
+		var changeval = function () {
+		       var p = $(this).text();
+		       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
+		       $(this).text(nval);
+		    }
+
+		     $('.preco')
+		    .each(changeval)
+		    .on('change', changeval);
+	 });
+		     </script>
 </head>
 
 <c:import url="header.jsp" />
@@ -32,13 +49,11 @@
 				src="data:image/jpg;base64,${produto.base64Image}">
 											<span>${produto.nome}</span>
 											<br>
-											<span class="spanValor">R$ ${produto.valor}</span></a> 
+											<span class="preco">${produto.valor}</span></a> 
 		</div>
 	</c:forEach>
 	</div>
 </div>
 <c:import url="footer.jsp" />
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </body>
 </HTML>
