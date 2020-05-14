@@ -35,24 +35,8 @@ public class ProdutoService {
 	public ArrayList<Produto> listarProdutos(String chave) throws IOException {
 		return dao.listarProdutos(chave);
 	}
-	public ArrayList<Produto> listarApple() throws IOException {
-		return dao.listarApple();
-		
-	}
-	public ArrayList<Produto> listarXiaomi() throws IOException {
-		return dao.listarXiaomi();
-		
-	}
-	public ArrayList<Produto> listarSmartWatch() throws IOException {
-		return dao.listarSmartWatch();
-		
-	}
-	public ArrayList<Produto> listarFones() throws IOException {
-		return dao.listarFones();
-		
-	}
-	public ArrayList<Produto> listarSamsung() throws IOException {
-		return dao.listarSamsung();
+	public ArrayList<Produto> listarProdutosColecao(int idColecao) throws IOException {
+		return dao.listarProdutosColecao(idColecao);
 		
 	}
 }

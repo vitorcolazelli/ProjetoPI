@@ -118,7 +118,7 @@
 									href="controller.do?command=EditarPedido&idPedido=${pedido.idPedido }">Editar</a>
 
 									<button id="btn${pedido.idPedido }%>" type="button"
-										class="btn btn-danger btn-xs" data-toggle="modal"
+										class="btn btn-danger btn-xs deleteModal" data-toggle="modal"
 										data-target="#delete-modal"
 										data-cliente="${pedido.idPedido }">Excluir</button></td>
 									</tr>
@@ -132,11 +132,11 @@
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
-		$("#delete-modal").on('show.bs.modal', function(event) {
-			var button = $(event.relatedTarget); //botao que disparou a modal
-			var recipient = button.data('cliente');
-			$("#id_excluir").val(recipient);
-		});
+	$(document).on('click',".deleteModal", function(event) {
+		var button = $(this); //botao que disparou a modal
+		var recipient = button.data('cliente');
+		$(".modal-footer #id_excluir").val(recipient);
+	});
 	</script>
 </body>
 </html>

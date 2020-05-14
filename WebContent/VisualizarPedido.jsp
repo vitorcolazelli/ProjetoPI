@@ -74,7 +74,7 @@
 							class="btn btn-danger btn-sm" data-toggle="modal"
 							data-target="#delete-modal" data-cliente="${pedido.idPedido }">Excluir</button>
 
-						<a href="ListarPedidos.jsp" class="btn btn-light btn-sm"
+						<a href="controller.do?command=ListarPedido" class="btn btn-light btn-sm"
 							role="button" aria-pressed="true">Voltar</a>
 					</div>
 				</div>

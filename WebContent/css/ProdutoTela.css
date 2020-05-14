@@ -18,22 +18,6 @@
 	font-size: 12px;	
 }
 
-a:link {
-   color: red;
-}
-
-a:visited {
-    color: black;
-}
-
-a:hover {
-    color: grey;
-}
-
-a:active {
-    color: blue;
-}
-
 .clear{
 	clear: both;
 }

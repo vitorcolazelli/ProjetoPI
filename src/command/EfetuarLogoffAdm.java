@@ -26,9 +26,10 @@ public class EfetuarLogoffAdm implements Command {
 		AdministradorService as = new AdministradorService();
 		
 		
-		if(as.validar(administrador))
+		if (administrador!=null&&as.validar(administrador))
 		{
 			session.setAttribute("logado", null);
+			session.invalidate();
 			System.out.println("Logoff efetuado com sucesso!!	");
 		}	
 		response.sendRedirect("TelaInicial.jsp");

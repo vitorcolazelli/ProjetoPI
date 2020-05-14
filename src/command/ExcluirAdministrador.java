@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Administrador;
 import service.AdministradorService;
@@ -19,7 +18,7 @@ public class ExcluirAdministrador implements Command {
 			throws ServletException, IOException {
 	
 		String pIdAdministrador = request.getParameter("idAdministrador");
-		int idAdministrador = 1;
+		int idAdministrador = -1;
 		
 		try {
 			idAdministrador = Integer.parseInt(pIdAdministrador);
@@ -33,15 +32,10 @@ public class ExcluirAdministrador implements Command {
 		AdministradorService cs = new AdministradorService();
 		
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		 
 		cs.excluir(administrador.getIdAdministrador());
-		ArrayList<Administrador> lista = (ArrayList<Administrador>) session.getAttribute("lista");
-		lista.remove(busca(administrador, lista));
-		session.setAttribute("lista", lista);
-		
-		view = request.getRequestDispatcher("ListarAdministradores.jsp");
-	
+		request.setAttribute("deleteAdm", "Administrador excluido");
+		view = request.getRequestDispatcher("controller.do?command=ListarAdministrador");
 		view.forward(request, response);
 	}
 

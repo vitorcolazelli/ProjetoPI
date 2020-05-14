@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Pedido;
 import service.PedidoService;
@@ -42,14 +41,8 @@ public class AlterarPedido implements Command {
 		
 		PedidoService cs = new PedidoService();
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		
 		cs.atualizar(pedido);
-		ArrayList<Pedido> lista = (ArrayList<Pedido>) session.getAttribute("lista");
-		int pos = busca(pedido, lista);
-		lista.remove(pos);
-		lista.add(pos,pedido);
-		session.setAttribute("lista", lista);
 		request.setAttribute("pedido", pedido);
 		view = request.getRequestDispatcher("VisualizarPedido.jsp");
 		

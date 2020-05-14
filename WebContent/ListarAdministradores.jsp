@@ -58,6 +58,12 @@
 					<div class="titulo">Gerenciamento de Administradores</div>
 				</div>
 			</div>
+			<c:if test="${not empty successAdm}">
+				<div class="alert alert-success" role="alert"> ${successAdm}</div> 
+			</c:if>
+			<c:if test="${not empty deleteAdm}">
+				<div class="alert alert-danger" role="alert"> ${deleteAdm}</div> 
+			</c:if>
 			<hr>
 			<div class="botoes">
 				<div id="top" class="row">
@@ -123,7 +129,7 @@
 											href="controller.do?command=EditarAdministrador&idAdministrador=${administrador.idAdministrador }">Editar</a>
 
 											<button id="btn${administrador.idAdministrador }%>"
-												type="button" class="btn btn-danger btn-xs"
+												type="button" class="btn btn-danger btn-xs deleteModal"
 												data-toggle="modal" data-target="#delete-modal"
 												data-cliente="${administrador.idAdministrador }">Excluir</button></td>
 									</tr>
@@ -137,11 +143,11 @@
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
-		$("#delete-modal").on('show.bs.modal', function(event) {
-			var button = $(event.relatedTarget); //botao que disparou a modal
-			var recipient = button.data('cliente');
-			$("#id_excluir").val(recipient);
-		});
+	$(document).on('click',".deleteModal", function(event) {
+		var button = $(this); //botao que disparou a modal
+		var recipient = button.data('cliente');
+		$(".modal-footer #id_excluir").val(recipient);
+	});
 	</script>
 </body>
 </html>

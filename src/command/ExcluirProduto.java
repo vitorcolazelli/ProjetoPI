@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Produto;
 import service.ProdutoService;
@@ -33,15 +32,11 @@ public class ExcluirProduto implements Command {
 		ProdutoService ps = new ProdutoService();
 		
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		 
 		ps.excluir(produto.getIdProduto());
-		ArrayList<Produto> lista = (ArrayList<Produto>) session.getAttribute("lista");
-		lista.remove(busca(produto, lista));
-		session.setAttribute("lista", lista);
 		
-		view = request.getRequestDispatcher("ListarProdutos.jsp");
-	
+		request.setAttribute("delete", "Produto Excluido");
+		view = request.getRequestDispatcher("controller.do?command=ListarProduto");
 		view.forward(request, response);
 	}
 

@@ -3,13 +3,11 @@ package command;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Produto;
 import service.ProdutoService;
@@ -76,13 +74,8 @@ public class CriarProduto implements Command {
 		ps.criar(produto);
 
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
-
-		ArrayList<Produto> lista = new ArrayList<>();
-		lista.add(produto);
-		session.setAttribute("lista", lista);
-		view = request.getRequestDispatcher("ListarProdutos.jsp");
-
+		request.setAttribute("success", "Produto cadastrado com sucesso");
+		view = request.getRequestDispatcher("controller.do?command=ListarProduto");
 		view.forward(request, response);
 	}
 

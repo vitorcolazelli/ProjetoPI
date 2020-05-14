@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Colecao;
 import service.ColecaoService;
@@ -31,15 +30,10 @@ public class ExcluirColecao implements Command{
 		ColecaoService cs = new ColecaoService();
 		
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		
 		cs.excluir(colecao.getIdColecao());
-		ArrayList<Colecao> lista = (ArrayList<Colecao>) session.getAttribute("lista");
-		lista.remove(busca(colecao, lista));
-		session.setAttribute("lista", lista);
-		
-		view = request.getRequestDispatcher("ListarColecoes.jsp");
-	
+		request.setAttribute("deleteCol", "Coleção Excluida");
+		view = request.getRequestDispatcher("controller.do?command=ListarColecao");
 		view.forward(request, response);
 	}
 	

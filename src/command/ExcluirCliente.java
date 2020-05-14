@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Cliente;
 import service.ClienteService;
@@ -33,15 +32,10 @@ public class ExcluirCliente implements Command {
 		ClienteService cs = new ClienteService();
 		
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		 
 		cs.excluir(cliente.getIdCliente());
-		ArrayList<Cliente> lista = (ArrayList<Cliente>) session.getAttribute("lista");
-		lista.remove(busca(cliente, lista));
-		session.setAttribute("lista", lista);
-		
-		view = request.getRequestDispatcher("ListarClientes.jsp");
-	
+		request.setAttribute("deleteCli", "Cliente Excluido");
+		view = request.getRequestDispatcher("controller.do?command=ListarCliente");
 		view.forward(request, response);
 	}
 

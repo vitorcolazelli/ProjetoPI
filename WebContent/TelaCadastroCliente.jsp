@@ -83,6 +83,9 @@
 	<br>
 		<h1 class="page-header">Cadastro</h1>
 		<br>
+		<c:if test="${not empty err}"> 
+			<div class="alert alert-danger" role="alert"> ${err}</div> 
+		</c:if>
 		<c:out value="${msg}"></c:out>
 		<h4>
 			<strong>Informações de login</strong>

@@ -20,7 +20,6 @@ public class AdicionarCarrinho implements Command {
 		}
 		int idCliente = (Integer)request.getSession().getAttribute("idCliente");
 		int idProduto = Integer.parseInt(request.getParameter("idProduto"));
-		
 		PedidoService ps = new PedidoService();
 		Pedido carrinho = ps.listarPedidosCarrinho(idCliente);
 		

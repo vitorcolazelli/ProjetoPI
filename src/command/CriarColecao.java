@@ -3,13 +3,11 @@ package command;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Colecao;
 import service.ColecaoService;
@@ -40,12 +38,8 @@ public class CriarColecao implements Command{
 		cs.inserir(colecao);
 		
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
-		
-		ArrayList<Colecao> lista = new ArrayList<>();
-		lista.add(colecao);
-		session.setAttribute("lista", lista);
-		view = request.getRequestDispatcher("ListarColecoes.jsp"); 
+		request.setAttribute("successCol", "Coleção cadastrada com sucesso");
+		view = request.getRequestDispatcher("controller.do?command=ListarColecao"); 
 		view.forward(request, response);
 	}
 }

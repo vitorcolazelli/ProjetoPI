@@ -58,6 +58,9 @@
 					<div class="titulo">Gerenciamento de Clientes</div>
 				</div>
 			</div>
+			<c:if test="${not empty deleteCli}">
+				<div class="alert alert-danger" role="alert"> ${deleteCli}</div> 
+			</c:if>
 			<hr>	
 			<div class="botoes">
 				<div id="top" class="row">
@@ -135,7 +138,7 @@
 											href="controller.do?command=EditarCliente&idCliente=${cliente.idCliente }">Editar</a>
 
 											<button id="btn${cliente.idCliente }%>" type="button"
-												class="btn btn-danger btn-xs" data-toggle="modal"
+												class="btn btn-danger btn-xs deleteModal" data-toggle="modal"
 												data-target="#delete-modal"
 												data-cliente="${cliente.idCliente }">Excluir</button></td>
 									</tr>
@@ -149,11 +152,11 @@
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
-		$("#delete-modal").on('show.bs.modal', function(event) {
-			var button = $(event.relatedTarget); //botao que disparou a modal
-			var recipient = button.data('cliente');
-			$("#id_excluir").val(recipient);
-		});
+	$(document).on('click',".deleteModal", function(event) {
+		var button = $(this); //botao que disparou a modal
+		var recipient = button.data('cliente');
+		$(".modal-footer #id_excluir").val(recipient);
+	});
 	</script>
 </body>
 </html>

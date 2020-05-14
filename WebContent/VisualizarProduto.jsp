@@ -33,8 +33,8 @@
 					</button>
 					<h4 class="modal-title" id="modalLabel">Excluir Produto</h4>
 				</div>
-				<div class="modal-body">Deseja realmente excluir este Produto?
-				</div>
+				<div class="modal-body">Deseja realmente excluir este
+					Produto?</div>
 				<div class="modal-footer">
 					<form action="controller.do" method="post">
 						<input type="hidden" name="idProduto" id="id_excluir" />
@@ -53,6 +53,9 @@
 		<h3 class="page-header" align="center">Visualizar Informações do
 			Produto</h3>
 		<br>
+		<c:if test="${not empty alter}">
+				<div class="alert alert-warning" role="alert"> ${alter}</div> 
+		</c:if>
 		<form action="controller.do" method="post">
 
 			<div class="row">
@@ -124,7 +127,7 @@
 							class="btn btn-danger btn-sm" data-toggle="modal"
 							data-target="#delete-modal" data-cliente="${produto.idProduto }">Excluir</button>
 
-						<a href="ListarProdutos.jsp" class="btn btn-light btn-sm"
+						<a href="controller.do?command=ListarProduto" class="btn btn-light btn-sm"
 							role="button" aria-pressed="true">Voltar</a>
 					</div>
 				</div>

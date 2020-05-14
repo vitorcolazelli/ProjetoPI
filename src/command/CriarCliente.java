@@ -1,7 +1,6 @@
 package command;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +16,7 @@ public class CriarCliente implements Command {
 	@Override
 	public void executar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String pIdCliente = request.getParameter("idCliente");
 		String pNome = request.getParameter("nome");
 		String pEmail = request.getParameter("email");
 		String pSenha = request.getParameter("senha");
@@ -31,7 +31,14 @@ public class CriarCliente implements Command {
 		String pNumero = request.getParameter("numero");
 		String pComplemento = request.getParameter("complemento");
 		
+		int idCliente = -1;
+		try {
+			idCliente = Integer.parseInt(pIdCliente);
+		} catch (NumberFormatException e) {
+		}
+		
 		Cliente cliente = new Cliente();
+		cliente.setIdCliente(idCliente);
 		cliente.setNome(pNome); 
 		cliente.setEmail(pEmail);
 		cliente.setSenha(pSenha);
@@ -47,17 +54,25 @@ public class CriarCliente implements Command {
 		cliente.setComplemento(pComplemento);	
 		
 		ClienteService cs = new ClienteService();
-		cs.criar(cliente);
+		int retorno = cs.criar(cliente);
 		
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
+		if(retorno == -1) {
+			System.out.println("Não Cadastrou" + cliente);
+			request.setAttribute("err", "Email ou CPF ja existente");
+			request.getRequestDispatcher("TelaCadastroCliente.jsp").forward(request, response);
+		}
 		
-		ArrayList<Cliente> lista = new ArrayList<>();
-		lista.add(cliente);
-		session.setAttribute("lista", lista);
+		if(cs.validar(cliente)) {
+			HttpSession session = request.getSession();
+			cliente = cs.carregarEmail(cliente.getEmail());
+			session.setAttribute("logado", cliente);
+			session.setAttribute("idCliente", cliente.getIdCliente());
+			session.setAttribute("logNome", cliente.getNome());
+			System.out.println("logou" + cliente);
+			
+		}
 		view = request.getRequestDispatcher("TelaInicial.jsp");
-		request.setAttribute("msg", "Cadastro Efetuado com sucesso");
 		view.forward(request, response);
 	}
-
 }

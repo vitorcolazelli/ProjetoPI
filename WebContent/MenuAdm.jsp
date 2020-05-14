@@ -80,6 +80,11 @@
 						class="nav-link px-2"> <i class="material-icons icon">
 								settings </i> <span class="text">Administradores</span>
 					</a></li>
+					<li class="nav-item"><a href="TelaInicial.jsp"
+						class="nav-link px-2"> <i class="material-icons icon">
+								home </i> <span class="text">Tela Inicial</span>
+					</a></li>
+
 				</ul>
 			</div>
 		</div>

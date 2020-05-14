@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Produto;
 import service.ProdutoService;
@@ -58,17 +57,11 @@ public class AlterarProduto implements Command {
 
 		ProdutoService ps = new ProdutoService();
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		
 		ps.atualizar(produto);
-		ArrayList<Produto> lista = (ArrayList<Produto>) session.getAttribute("lista");
-		int pos = busca(produto, lista);
-		lista.remove(pos);
-		lista.add(pos,produto);
-		session.setAttribute("lista", lista);
 		request.setAttribute("produto", produto);
+		request.setAttribute("alter", "Produto Alterado");
 		view = request.getRequestDispatcher("VisualizarProduto.jsp");
-		
 		 view.forward(request, response);
 	}
 

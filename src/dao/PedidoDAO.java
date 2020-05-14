@@ -1,5 +1,6 @@
 package dao;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +15,7 @@ public class PedidoDAO {
 		String sqlInsert = "INSERT INTO pedido(valorTotal, cliente_idCliente, f_pagamento_idPagamento, status) VALUES (?, ?, ?, ?)";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
-			stm.setFloat(1, pedido.getValorTotal());
+			stm.setDouble(1, pedido.getValorTotal());
 			stm.setInt(2, pedido.getCliente_idCliente());
 			stm.setInt(3, pedido.getFormaPagamento_idPagamento());
 			stm.setString(4, pedido.getStatus());
@@ -34,10 +35,10 @@ public class PedidoDAO {
 	}
 
 	public void atualizar(Pedido pedido) {
-		String sqlUpdate = "UPDATE pedido SET ValorTotal=?, status = ? WHERE idPedido=?";
+		String sqlUpdate = "UPDATE pedido SET ValorTotal=?, status = ?, dataPedido = now() WHERE idPedido=?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setFloat(1, pedido.getValorTotal());
+			stm.setDouble(1, pedido.getValorTotal());
 			stm.setString(2, pedido.getStatus());
 			stm.setInt(3, pedido.getIdPedido());
 			stm.execute();
@@ -57,6 +58,18 @@ public class PedidoDAO {
 		}
 	}
 
+	public void excluirItem(int idPedido, int idProduto) {
+		String sqlDel = "DELETE FROM itempedido WHERE idPedido = ? AND idProduto = ?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlDel);) {
+			stm.setInt(1, idPedido);
+			stm.setInt(2, idProduto);
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public Pedido carregar(int idPedido) {
 		Pedido pedido = new Pedido();
 		pedido.setIdPedido(idPedido);
@@ -141,8 +154,7 @@ public class PedidoDAO {
 					pedido.setCliente_idCliente(rs.getInt("cliente_idCliente"));
 					pedido.setFormaPagamento_idPagamento(rs.getInt("f_Pagamento_idPagamento"));
 					pedido.setStatus(rs.getString("status"));
-
-				} else {
+				}else {
 					pedido = new Pedido();
 					pedido.setCliente_idCliente(idCliente);
 					pedido.setStatus("carrinho");
@@ -203,6 +215,47 @@ public class PedidoDAO {
 			}
 		} catch (SQLException e1) {
 			System.out.print(e1.getStackTrace());
+		}
+	}
+	
+	public ItemPedido carregarItem(int idPedido) throws IOException{
+		ItemPedido itemPedido = new ItemPedido();
+		itemPedido.setIdPedido(idPedido);
+		String sqlSelect = "SELECT * FROM itempedido WHERE idPedido = ?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, itemPedido.getIdPedido());
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					itemPedido.setIdPedido(rs.getInt("idPedido"));
+					itemPedido.setIdProduto(rs.getInt("idProduto"));
+					itemPedido.setQuantidade(rs.getInt("quantidade"));
+					
+				} else {
+					itemPedido.setIdProduto(-1);
+					itemPedido.setIdProduto(-1);
+					itemPedido.setQuantidade(-1);
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return itemPedido;
+	}
+	
+	public void atualizarItem(ItemPedido itemPedido) {
+		String sqlUpdate = "UPDATE itemPedido SET quantidade=? WHERE idProduto=? and idPedido=?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setInt(1, itemPedido.getQuantidade());
+			stm.setInt(2, itemPedido.getIdProduto());
+			stm.setInt(3, itemPedido.getIdPedido());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

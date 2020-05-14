@@ -16,6 +16,11 @@ public class Produto {
 	private int Fk_IdColecao;
 	private ArrayList<Produto> produtos;
 	
+	public String Money(){
+	return null;	
+	}
+	
+	
 	public Produto() {
 		
 	}

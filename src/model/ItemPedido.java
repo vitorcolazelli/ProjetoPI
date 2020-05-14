@@ -5,15 +5,17 @@ public class ItemPedido {
 	private int idProduto;
 	private int quantidade;
 	private Produto produto;
-	
+	private double total;
+
 	public ItemPedido() {
 		
 	}
 	
-	public ItemPedido(int idPedido, int idProduto, int quantidade) {
+	public ItemPedido(int idPedido, int idProduto, int quantidade, double total) {
 		this.idPedido = idPedido;
 		this.idProduto = idProduto;
 		this.quantidade = quantidade;
+		this.total = total;
 	}
 	
 	public int getIdPedido() {
@@ -41,5 +43,12 @@ public class ItemPedido {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
 	}
 }

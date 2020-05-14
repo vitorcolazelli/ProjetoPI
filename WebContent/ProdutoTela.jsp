@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Darkcell! - Explos„o de PreÁos Baixo</title>
+<title>Darkcell! - Explos√£o de Pre√ßos Baixo</title>
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/ProdutoTela.css" rel="stylesheet">
 </head>
@@ -17,32 +17,39 @@
 	<div id="main" class="container">
 		<div id="main" class="containerProduto">
 			<div class="TopoProduto">
-				<strong> 
-				<a class="inicioBotao" href="TelaInicial.jsp" title="Voltar ‡ p·gina inicial">Inicio</a> <span> > </span><span>Xiaomi</span><span>> </span><span>${produto.nome}</span>
-				</strong>
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="TelaInicial.jsp">Pagina Inicial</a></li>
+						<li class="breadcrumb-item"><a href="controller.do?command=ListarColecao&v=1">Cole√ß√µes</a></li>
+						<li class="breadcrumb-item active" aria-current="page">${produto.nome}</li>
+					</ol>
+				</nav>
 			</div>
 			<div class="DivImg">
-				<img class="imgProduto" src="data:image/jpg;base64,${produto.base64Image}">
+				<img class="imgProduto"
+					src="data:image/jpg;base64,${produto.base64Image}">
 			</div>
-			
+
 			<div class="col-md-3 col-lg-6 col-sm-12 col-xs-12">
 				<h2 class="TituloProduto" align="left">
 					<strong>${produto.nome}</strong>
 				</h2>
-			 	<p class="valor">${produto.valor}</p>
+				<p class="valor">R$ ${produto.valor}</p>
 				<div class="divCapacid">
-					<h5>Capacidade: </h5> 
+					<h5>Capacidade:</h5>
 					<select>
 						<option value="${produto.capacidade}">${produto.capacidade}</option>
 					</select>
-				</div> 
+				</div>
 				<div class="divCor">
-					<h5>Cores: </h5> 
+					<h5>Cores:</h5>
 					<select>
 						<option value="${produto.cor}">${produto.cor}</option>
 					</select>
 					<div class="btm">
-						<a type="button" class="btn btn-danger btn-lg" href="controller.do?command=AdicionarCarrinho&idProduto=${produto.idProduto}">ADICIONAR AO CARRINHO</a>
+						<a type="button" class="btn btn-danger btn-lg"
+							href="controller.do?command=AdicionarCarrinho&idProduto=${produto.idProduto}">ADICIONAR
+							AO CARRINHO</a>
 					</div>
 				</div>
 				<img width="350px" src="./imagens/ImagemMercado.jpg">

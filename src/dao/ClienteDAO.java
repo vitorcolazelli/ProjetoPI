@@ -69,7 +69,7 @@ public class ClienteDAO {
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlDelete);) {
 			stm.setInt(1, idCliente);
-			stm.execute();
+			stm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

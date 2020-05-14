@@ -14,6 +14,9 @@
 		<div id="main" class="container">
 		<br>
 		<br>
+		<c:if test="${not empty erro}"> 
+			<div class="alert alert-danger" role="alert"> ${erro}</div> 
+		</c:if>
 			<h1 class="page-header">Login</h1>
 			<form action="controller.do" method="post">
 				<div class="row">

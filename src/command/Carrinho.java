@@ -30,10 +30,11 @@ public class Carrinho implements Command {
 		ArrayList<ItemPedido> lista = ps.ListarItensPedido(carrinho.getIdPedido());
 		for(ItemPedido p:lista) {
 			p.setProduto(produtoService.carregarProduto(p.getIdProduto()));
+			p = ps.carregarItem(p.getIdPedido());
+			request.setAttribute("itemPedido", p);
 		}
-		
+		request.setAttribute("carrinho", carrinho);
 		request.setAttribute("listaCarrinho", lista);
 		request.getRequestDispatcher("Carrinho.jsp").forward(request, response);
 	}
-
 }

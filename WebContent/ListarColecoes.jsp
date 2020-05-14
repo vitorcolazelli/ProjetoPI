@@ -9,11 +9,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Buscar Coleção</title>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y="
 	crossorigin="anonymous" />
 <link href="css/ListaColecoes.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).on('click',".deleteModal", function(event) {
+			var button = $(this); //botao que disparou a modal
+			var recipient = button.data('cliente');
+			$(".modal-footer #id_excluir").val(recipient);
+		});
+	</script>
 </head>
 <body>
 	<!-- Modal -->
@@ -57,6 +67,12 @@
 					<div class="titulo">Gerenciamento de Coleções</div>
 				</div>
 			</div>
+			<c:if test="${not empty successCol}">
+				<div class="alert alert-success" role="alert"> ${successCol}</div> 
+			</c:if>
+			<c:if test="${not empty deleteCol}">
+				<div class="alert alert-danger" role="alert"> ${deleteCol}</div> 
+			</c:if>
 			<hr>
 			<div class="botoes">
 				<div id="top" class="row">
@@ -94,7 +110,7 @@
 			<!-- /#top -->
 		</form>
 		<hr />
-		<c:if test="${not empty lista}">
+		<c:if test="${not empty listaColecao}">
 			<div class="tabelaNome">
 				<div id="list" class="row">
 					<div class="table-responsive col-md-12 ">
@@ -108,7 +124,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="colecao" items="${lista }">
+								<c:forEach var="colecao" items="${listaColecao}">
 							<tr>
 								<td>${colecao.idColecao }</td>
 								<td>${colecao.nome }</td>
@@ -119,10 +135,10 @@
 									<a class="btn btn-warning btn-xs"
 									href="controller.do?command=EditarColecao&idColecao=${colecao.idColecao }">Editar</a>
 
-									<button id="btn${colecao.idColecao }%>" type="button"
-										class="btn btn-danger btn-xs" data-toggle="modal"
-										data-target="#delete-modal"
-										data-cliente="${colecao.idColecao }">Excluir</button></td>
+									<a id="btn${colecao.idColecao }>" type="button"
+										class="btn btn-danger btn-xs deleteModal" data-toggle="modal"
+										data-target="#delete-modal" data-idColecao="${colecao.idColecao}" data-cliente="${colecao.idColecao }" href="#delete-modal">Excluir</a></td>
+									
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -132,13 +148,5 @@
 			</div>
 		</c:if>
 	</div>
-	<script src="js/jquery.min.js"></script>
-	<script type="text/javascript">
-		$("#delete-modal").on('show.bs.modal', function(event) {
-			var button = $(event.relatedTarget); //botao que disparou a modal
-			var recipient = button.data('cliente');
-			$("#id_excluir").val(recipient);
-		});
-	</script>
 </body>
 </html>

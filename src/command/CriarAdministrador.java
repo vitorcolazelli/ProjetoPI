@@ -1,13 +1,11 @@
 package command;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Administrador;
 import service.AdministradorService;
@@ -30,13 +28,8 @@ public class CriarAdministrador implements Command {
 		as.criar(administrador);
 		
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
-		
-		ArrayList<Administrador> lista = new ArrayList<>();
-		lista.add(administrador);
-		session.setAttribute("lista", lista);
-		view = request.getRequestDispatcher("ListarAdministradores.jsp");
- 
+		request.setAttribute("successAdm", "Administrador cadastrado com sucesso");
+		view = request.getRequestDispatcher("controller.do?command=ListarAdministrador");
 		view.forward(request, response);
 	}
 

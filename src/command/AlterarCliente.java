@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Cliente;
 import service.ClienteService;
@@ -58,18 +57,12 @@ public class AlterarCliente implements Command {
 		
 		ClienteService cs = new ClienteService();
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		
 		cs.atualizar(cliente);
-		ArrayList<Cliente> lista = (ArrayList<Cliente>) session.getAttribute("lista");
-		int pos = busca(cliente, lista);
-		lista.remove(pos);
-		lista.add(pos,cliente);
-		session.setAttribute("lista", lista);
 		request.setAttribute("cliente", cliente);
+		request.setAttribute("alterCli", "Cliente alterado");
 		view = request.getRequestDispatcher("VisualizarCliente.jsp");
-		
-		 view.forward(request, response);
+		view.forward(request, response);
 	}
 
 	public int busca(Cliente cliente, ArrayList<Cliente> lista) {

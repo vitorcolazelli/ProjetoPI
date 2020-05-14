@@ -28,7 +28,7 @@
 					</form>
 				</c:when>
 				<c:when test="${not empty lista}">
-					<h1 class="titulo">A sua pesquisa por "" teve o seguinte resultado:</h1>
+					<h1 class="titulo">A sua pesquisa teve o seguinte resultado:</h1>
 					<form action="controller.do" method="post">
 						<input class="pesquisa2 col-md-8" name="data[search]" type="search" placeholder="Buscar...">
 						<button class="btn btn-secondary" name="command" value="ListarProdutoPesquisa" type="submit">
@@ -47,7 +47,7 @@
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
-					<h1 class="titulo">A sua pesquisa por "" não teve resultados.</h1>
+					<h1 class="titulo">A sua pesquisa não teve resultados.</h1>
 					<form action="controller.do" method="post">
 						<input class="pesquisa col-md-8" name="data[search]" type="search" placeholder="Buscar...">
 						<button class="btn btn-secondary" name="command" value="ListarProdutoPesquisa" type="submit">

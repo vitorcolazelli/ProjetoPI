@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Administrador;
 import service.AdministradorService;
@@ -21,7 +20,6 @@ public class ListarAdministrador implements Command {
 		String chave = request.getParameter("data[search]"); 
 		AdministradorService as = new AdministradorService();
 		ArrayList<Administrador> lista = null;
-		HttpSession session = request.getSession();
 		
 			if (chave != null && chave.length() > 0) {
 				lista = as.listarAdministradores(chave);
@@ -29,7 +27,7 @@ public class ListarAdministrador implements Command {
 			else {
 				lista = as.listarAdministradores();
 			}
-			session.setAttribute("lista", lista);
+			request.setAttribute("lista", lista);
 			
 			
 		RequestDispatcher dispatcher = request

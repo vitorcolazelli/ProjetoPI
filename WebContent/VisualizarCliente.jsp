@@ -56,6 +56,9 @@
 	<h3 class="page-header" align="center">Visualizar Informações do
 		Cliente</h3>
 	<br>
+	<c:if test="${not empty alterCli}">
+		<div class="alert alert-warning" role="alert"> ${alterCli}</div> 
+	</c:if>
 	<form action="controller.do" method="post">
 		<div class="row">
 			<div class="form-group col-md-12 linha">
@@ -161,7 +164,7 @@
 						class="btn btn-danger btn-sm" data-toggle="modal"
 						data-target="#delete-modal" data-cliente="${cliente.idCliente }">Excluir</button>
 
-					<a href="ListarClientes.jsp" class="btn btn-light btn-sm"
+					<a href="controller.do?command=ListarCliente" class="btn btn-light btn-sm"
 						role="button" aria-pressed="true">Voltar</a>
 				</div>
 			</div>

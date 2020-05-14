@@ -1,22 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/MeusDados.css" rel="stylesheet">
+	<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/MeusDados.css" rel="stylesheet">
 </head>
 <body>
 	<c:import url="header.jsp" />
 	<c:import url="Menu.jsp" />
 <div class="cadastroletraLogin">
-	<div id="main" class="container">
+	<div class="container">
 	<br>
 		<h3 class="page-header" align="center"> <strong>Meus Dados</strong></h3>
 		<br>
 		<form action="controller.do " method="post">
-			<h3>Informações do Usuário</h3>
+			<h3>InformaÃ§Ãµes do UsuÃ¡rio</h3>
 			<input type="hidden" name="idCliente" value="${cliente.idCliente}"/>
 			<div class="row">
 				<div class="form-group col-md-12 linha">
@@ -49,10 +51,10 @@
 						name="fone" id="fone" maxlength="100" />
 				</div>
 			</div>
-			<h3>Informações do Endereço</h3>
+			<h3>InformaÃ§Ãµes do EndereÃ§o</h3>
 			<div class="row">
 				<div class="form-group col-md-12">
-					<label for="pais">País: </label> 
+					<label for="pais">PaÃ­s: </label> 
 					<input value="${cliente.pais}" type="text" class="form-control"
 						name="pais" id="pais" maxlength="50" />
 				</div>
@@ -77,7 +79,7 @@
 				</div>
 
 				<div class="form-group col-md-6">
-					<label for="endereco">Endereço:
+					<label for="endereco">EndereÃ§o:
 					</label> <input value="${cliente.endereco}" type="text"
 						class="form-control" name="endereco" id="endereco" 
 						maxlength="50" />
@@ -85,7 +87,7 @@
 				</div>
 				<div class="row">
 				<div class="form-group col-md-6">
-					<label for="numero">Número:
+					<label for="numero">NÃºmero:	
 					</label> <input value="${cliente.numero}" type="text" class="form-control"
 						name="numero" id="numero"  maxlength="100" />
 				</div>
@@ -100,8 +102,8 @@
 			<div class="containerLogin">
 				<div id="actions" class="row">
 					<div class="md-col-12">
-						<button type="submit" class="btn btn-primary" name="command" value="AlterarCliente">Alterar</button>
-						<a href="TelaInicial.jsp" class="btn btn-danger"
+						<button type="submit" class="btn btn-primary" name="command" value="AlterarMeusDados">Alterar</button>
+						<a href="MinhaConta.jsp" class="btn btn-danger"
 							role="button" aria-pressed="true">Cancelar</a>
 					</div>
 				</div>
@@ -109,10 +111,9 @@
 		</form>
 	</div>
 </div>
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+		<c:import url="footer.jsp"/>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
 </body>
 </HTML>
 
-</body>
-</html>

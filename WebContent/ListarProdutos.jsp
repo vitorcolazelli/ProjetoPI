@@ -58,6 +58,12 @@
 					<div class="titulo">Gerenciamento de Produtos</div>
 				</div>
 			</div>
+			<c:if test="${not empty success}">
+				<div class="alert alert-success" role="alert"> ${success}</div> 
+			</c:if>
+			<c:if test="${not empty delete}">
+				<div class="alert alert-danger" role="alert"> ${delete}</div> 
+			</c:if>
 			<hr>
 			<div class="botoes">
 				<div id="top" class="row">
@@ -131,7 +137,7 @@
 									href="controller.do?command=EditarProduto&idProduto=${produto.idProduto }">Editar</a>
 
 									<button id="btn${produto.idProduto }%>" type="button"
-										class="btn btn-danger btn-xs" data-toggle="modal"
+										class="btn btn-danger btn-xs deleteModal" data-toggle="modal"
 										data-target="#delete-modal"
 										data-cliente="${produto.idProduto }">Excluir</button></td>
 									</tr>
@@ -145,11 +151,11 @@
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
-		$("#delete-modal").on('show.bs.modal', function(event) {
-			var button = $(event.relatedTarget); //botao que disparou a modal
-			var recipient = button.data('cliente');
-			$("#id_excluir").val(recipient);
-		});
+	$(document).on('click',".deleteModal", function(event) {
+		var button = $(this); //botao que disparou a modal
+		var recipient = button.data('cliente');
+		$(".modal-footer #id_excluir").val(recipient);
+	});
 	</script>
 </body>
 </html>

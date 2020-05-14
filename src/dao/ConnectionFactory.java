@@ -15,6 +15,6 @@ public class ConnectionFactory {
 	
 	public static Connection obtemConexao() throws SQLException {
 		return DriverManager
-				.getConnection("jdbc:mysql://localhost:3307/projetopi?user=root&password=080401&useTimezone=true&serverTimezone=America/Sao_Paulo");
+				.getConnection("jdbc:mysql://localhost:3306/projetopi?user=root&password=root&useTimezone=true&serverTimezone=America/Sao_Paulo");
 	}
 }

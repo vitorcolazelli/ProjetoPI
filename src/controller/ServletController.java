@@ -18,9 +18,9 @@ public class ServletController extends HttpServlet {
     public ServletController() {
         super(); 
     }
+ 
 
-
-    protected void doExecute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doExecute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {	
     		request.setCharacterEncoding("UTF-8");
     		Command comando =

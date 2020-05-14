@@ -1,20 +1,30 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Pedido {
 	private int idPedido;
-	private float valorTotal;
+	private double valorTotal;
 	private String status;
 	private int cliente_idCliente;
 	private ArrayList<ItemPedido> itens;
 	private int formaPagamento_idPagamento;
+	private Date dataPedido;
 	
+	public Date getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(Date dataPedido) {
+		this.dataPedido = dataPedido;
+	}
+
 	public Pedido() {
 		itens = new ArrayList<ItemPedido>();
 	}
 	
-	public Pedido(int idPedido, float valorTotal, String status, int cliente_idCliente, int formaPagamento_idPagamento) {
+	public Pedido(int idPedido, double valorTotal, String status, int cliente_idCliente, int formaPagamento_idPagamento) {
 		this.idPedido = idPedido;
 		this.valorTotal = valorTotal;
 		this.status = status;
@@ -41,12 +51,12 @@ public class Pedido {
 	}
 
 
-	public float getValorTotal() {
+	public double getValorTotal() {
 		return valorTotal;
 	}
 
 
-	public void setValorTotal(float valorTotal) {
+	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 

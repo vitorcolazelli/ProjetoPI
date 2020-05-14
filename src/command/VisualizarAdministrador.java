@@ -6,7 +6,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Administrador;
 import service.AdministradorService;
@@ -36,7 +35,6 @@ public class VisualizarAdministrador implements Command {
 		AdministradorService as = new AdministradorService();
 		
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		
 		administrador = as.carregar(administrador.getIdAdministrador());
 		request.setAttribute("administrador", administrador);

@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Pedido;
 import service.PedidoService;
@@ -31,14 +30,10 @@ public class ExcluirPedido implements Command{
 		PedidoService ps = new PedidoService();
 		
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		
 		ps.excluir(pedido.getIdPedido());
-		ArrayList<Pedido> lista = (ArrayList<Pedido>) session.getAttribute("lista");
-		lista.remove(busca(pedido, lista));
-		session.setAttribute("lista", lista);
 		
-		view = request.getRequestDispatcher("ListarPedidos.jsp");
+		view = request.getRequestDispatcher("controller.do?command=ListarPedido");
 	
 		view.forward(request, response);
 	}

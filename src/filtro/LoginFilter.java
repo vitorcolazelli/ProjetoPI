@@ -50,8 +50,8 @@ public class LoginFilter implements Filter {
 		if (comando == null) {
 			comando = "";
 		}
-		if (administrador == null && !uri.equals(path + "/LoginAdm.jsp") && !comando.equals("FazerLoginAdm")) {
-			((HttpServletResponse) response).sendRedirect(path + "/LoginAdm.jsp");
+		if (administrador == null && !uri.equals(path + "/Login.jsp") && !comando.equals("FazerLoginCli")) {
+			((HttpServletResponse) response).sendRedirect(path + "/Login.jsp");
 
 		} else {
 			chain.doFilter(request, response);

@@ -7,7 +7,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.Administrador;
 import service.AdministradorService;
@@ -38,14 +37,9 @@ public class AlterarAdministrador implements Command {
 		
 		AdministradorService as = new AdministradorService();
 		RequestDispatcher view = null;
-		HttpSession session = request.getSession();
 		
 		as.atualizar(administrador);
-		ArrayList<Administrador> lista = (ArrayList<Administrador>) session.getAttribute("lista");
-		int pos = busca(administrador, lista);
-		lista.remove(pos);
-		lista.add(pos,administrador);
-		session.setAttribute("lista", lista);
+		request.setAttribute("alterAdm", "Administrador Alterado");
 		request.setAttribute("administrador", administrador);
 		view = request.getRequestDispatcher("VisualizarAdministrador.jsp");
 		

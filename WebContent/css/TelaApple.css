@@ -4,6 +4,7 @@
 .TituloApple{
 	font-size: 32px;
 	margin-left: -40px;
+	margin-top: 30px;
 }
 
 .TopoApple{
@@ -15,27 +16,6 @@
 	margin-top: 50px;
 	margin-left: 25px;
 }
-
-/* link que ainda não foi visitado */
-a:link {
-   color: red;
-}
-
-/* link que foi visitado */
-a:visited {
-    color: black;
-}
-
-/* mouse over */
-a:hover {
-    color: grey;
-}
-
-/* link selecionado */
-a:active {
-    color: blue;
-}
-
 
 .ContainerProdutos {
 	padding-top: 20px;

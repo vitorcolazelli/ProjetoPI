@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Administrador;
 import model.Cliente;
+import service.AdministradorService;
 import service.ClienteService;
 
 public class FazerLoginCli implements Command{
@@ -15,6 +17,7 @@ public class FazerLoginCli implements Command{
 	@Override
 	public void executar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String pIdAdministrador = request.getParameter("idAdministrador");
 		String pIdCliente = request.getParameter("idCliente");
 		String pNome = request.getParameter("nome");
 		String pEmail = request.getParameter("email");
@@ -35,6 +38,12 @@ public class FazerLoginCli implements Command{
 			idCliente = Integer.parseInt(pIdCliente);
 		} catch (NumberFormatException e) {
 		}
+		int idAdministrador = -1;
+		try {
+			idAdministrador = Integer.parseInt(pIdAdministrador);
+		} catch (NumberFormatException e) {
+		}
+		
 		Cliente cliente = new Cliente();
 		cliente.setIdCliente(idCliente);
 		cliente.setNome(pNome);
@@ -51,23 +60,42 @@ public class FazerLoginCli implements Command{
 		cliente.setNumero(pNumero);
 		cliente.setComplemento(pComplemento);	
 		
-		ClienteService as = new ClienteService();
+		Administrador administrador = new Administrador();
+		administrador.setIdAdministrador(idAdministrador);
+		administrador.setNome(pNome);
+		administrador.setEmail(pEmail);
+		administrador.setSenha(pSenha);
 		
-		if(as.validar(cliente)) {
+		AdministradorService adm = new AdministradorService();	
+		
+		ClienteService cs = new ClienteService();
+		cliente.setEmail(pEmail);
+		cliente.setSenha(pSenha);
+		
+		if(cs.validar(cliente)) {
 			HttpSession session = request.getSession();
-			cliente = as.carregarEmail(cliente.getEmail());
+			cliente = cs.carregarEmail(cliente.getEmail());
 			session.setAttribute("logado", cliente);
 			session.setAttribute("idCliente", cliente.getIdCliente());
 			session.setAttribute("logNome", cliente.getNome());
 			System.out.println("logou" + cliente);
+			response.sendRedirect("TelaInicial.jsp");
 			
-		}else {
-			System.out.println("Não logou" + cliente);
-			throw new ServletException("Usuario/Senha invalidos");
 		}
-		
-		response.sendRedirect("TelaInicial.jsp");
+		else if(adm.validar(administrador)) {
+			HttpSession session = request.getSession();
+			administrador = adm.carregarEmail(administrador.getEmail());
+			session.setAttribute("logado", administrador);
+			session.setAttribute("logNomeAdm", administrador.getNome());			
+			System.out.println("logou" + administrador);
+			response.sendRedirect("TelaAdmin.jsp");
+			
+		}
+		else {
+			System.out.println("Não logou" + cliente);
+			request.setAttribute("erro", "Usuário e/ou senha inválidos");
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
+		return;
+		}
 	}
-
-
 }
