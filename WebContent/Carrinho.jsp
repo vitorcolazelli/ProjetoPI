@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-	<title>Darkcell ! - Explosão de Preços Baixo</title>
+	<title>Darkcel2l ! - Explosão de Preços Baixo</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
