@@ -25,8 +25,9 @@
 	</script>
 </head>
 <body>
+	<div class="container">
 		<div class="principal" align="center">
-			<a href="TelaInicial.jsp"><img src="./imagens/logo.png" ></a>
+			<a href="TelaInicial.jsp"><img class="imgLogo" src="./imagens/logo.png" ></a>
 			<div class="caminho">
 				<a href="controller.do?command=Carrinho"><span>Carrinho</span></a> › <a href="controller.do?command=CarregarPedido"><span>Frete</span></a> › <span>Pagamento</span>
 			</div>
@@ -34,20 +35,20 @@
 				<tbody>
 					<tr>
 						<td>
-							<span class="contato">Contato:</span> <span class="texto-contato">${cliente.email}</span> 
+							<span class="contato">Contato:</span> <span class="texto-contato">${cliente.email} </span><a href="controller.do?command=VisualizarMeusDadosCompra&idCliente=${cliente.idCliente}"> Alterar</a> 
 						</td>
 						
 					</tr>
 					<tr>
 						<td>
-							<span class="contato">Enviar para:</span> <span class="texto-contato">${cliente.endereco}, ${cliente.numero}, ${cliente.cpf}, ${cliente.bairro}, ${cliente.estado}, ${cliente.cep}</span>	
+							<span class="contato">Enviar para:</span> <span class="texto-contato">${cliente.endereco}, ${cliente.numero}, ${cliente.cpf}, ${cliente.bairro}, ${cliente.estado}, ${cliente.cep}</span><a href="controller.do?command=VisualizarMeusDadosCompraEndereco&idCliente=${cliente.idCliente}"> Alterar</a> 
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<div class="divBtn">
-				<a class="text-dark voltar" href="">Voltar para o carrinho</a>
-				<a class="btn btn-danger pagto" href="" role="button">CONTINUAR PAGAMENTO</a>
+				<a class="text-dark voltar" href="controller.do?command=Carrinho">‹ Voltar para o carrinho</a>
+				<a class="btn btn-danger btn-lg pagto" href="" role="button">Continuar com o pagamento</a>
 			</div>
 		</div>
 		<div class="itens">
@@ -73,6 +74,7 @@
 			<div class="separacao">
 				<p>Total<span class="preco">${carrinho.valorTotal}</span></p>
 			</div>
+		</div>
 		</div>
 		<div class="clear"></div>
 </body>

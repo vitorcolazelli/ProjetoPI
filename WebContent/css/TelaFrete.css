@@ -100,8 +100,14 @@ label{
 
 .pagto{
 	float: right;
+	font-size: 15px;
 }
 
 .voltar{
 	float: left;
+}
+
+.imgLogo{
+	heigth: 40px;
+	width: 250px;
 }
