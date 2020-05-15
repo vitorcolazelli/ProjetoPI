@@ -52,6 +52,53 @@
 						name="fone" id="fone" maxlength="100" />
 				</div>
 			</div>
+			<h3>Informações do Endereço</h3>
+			<div class="row">
+				<div class="form-group col-md-12">
+					<label for="pais">País: </label> 
+					<input value="${cliente.pais}" type="text" class="form-control"
+						name="pais" id="pais" maxlength="50" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="cep">CEP: </label>
+					<input value="${cliente.cep}" type="text" class="form-control"
+						name="cep" id="cep" maxlength="100" />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="estado">Estado:
+					</label> <input value="${cliente.estado}" type="text" class="form-control"
+						name="estado" id="estado" maxlength="100" />
+				</div>
+				</div>
+				<div class="row">
+				<div class="form-group col-md-6">
+					<label for="bairro">Bairro:
+					</label> <input value="${cliente.bairro}" type="text" class="form-control"
+						name="bairro" id="bairro"  maxlength="100" />
+				</div>
+
+				<div class="form-group col-md-6">
+					<label for="endereco">Endereço:
+					</label> <input value="${cliente.endereco}" type="text"
+						class="form-control" name="endereco" id="endereco" 
+						maxlength="50" />
+				</div>
+				</div>
+				<div class="row">
+				<div class="form-group col-md-6">
+					<label for="numero">Número:	
+					</label> <input value="${cliente.numero}" type="text" class="form-control"
+						name="numero" id="numero"  maxlength="100" />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="complemento">Complemento:
+					</label> <input value="${cliente.complemento}" type="text"
+						class="form-control" name="complemento" id="complemento" 
+						maxlength="100" />
+				</div>
+			</div>
 			<hr />
 			<div class="containerLogin">
 				<div id="actions" class="row">

@@ -13,26 +13,25 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>
 	<script>
+		$(document).ready(function(){
+			var changeval = function () {
+			       var p = $(this).text();
+			       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
+			       $(this).text(nval);
+			    }
 	
-	$(document).ready(function(){
-		var changeval = function () {
-		       var p = $(this).text();
-		       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
-		       $(this).text(nval);
-		    }
-
-		     $('.preco')
-		    .each(changeval)
-		    .on('change', changeval);
-		     	     
-		var changeqtd = function (){
-			var formsm = $(this).parent();
-			formsm.submit();	
-		}
-			$('.qtdProd')
-			.on('change', changeqtd);
-	  });
-</script>
+			     $('.preco')
+			    .each(changeval)
+			    .on('change', changeval);
+			     	     
+			var changeqtd = function (){
+				var formsm = $(this).parent();
+				formsm.submit();	
+			}
+				$('.qtdProd')
+				.on('change', changeqtd);
+		  });
+	</script>
 	</head>
 <body>
 	<c:import url="header.jsp" />

@@ -27,31 +27,24 @@
 <body>
 	<div class="container">
 		<div class="principal" align="center">
-			<a href="TelaInicial.jsp"><img class="imgLogo" src="./imagens/logo.png" ></a>
-			<div class="caminho">
-				<a href="controller.do?command=Carrinho"><span>Carrinho</span></a> › <a href="controller.do?command=CarregarPedido"><span>Frete</span></a> › <span>Pagamento</span>
-			</div>
-			<table>
-				<tbody>
-					<tr>
-						<td>
-							<span class="contato">Contato:</span> <span class="texto-contato">${cliente.email} </span><a href="controller.do?command=VisualizarMeusDadosCompra&idCliente=${cliente.idCliente}"> Alterar</a> 
-						</td>
-						
-					</tr>
-					<tr>
-						<td>
-							<span class="contato">Enviar para:</span> <span class="texto-contato">${cliente.endereco}, ${cliente.numero}, ${cliente.cpf}, ${cliente.bairro}, ${cliente.estado}, ${cliente.cep}</span><a href="controller.do?command=VisualizarMeusDadosCompraEndereco&idCliente=${cliente.idCliente}"> Alterar</a> 
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="divBtn">
-				<a class="text-dark voltar" href="controller.do?command=Carrinho">‹ Voltar para o carrinho</a>
-				<a class="btn btn-danger btn-lg pagto" href="" role="button">Continuar com o pagamento</a>
+			<div class="container">
+				<a href="TelaInicial.jsp"><img class="imgLogo" src="./imagens/logo.png" ></a>
+				<div class="caminho">
+					<a href="controller.do?command=Carrinho"><span>Carrinho</span></a> › <a href="controller.do?command=CarregarPedido"><span>Frete</span></a> › <span>Pagamento</span>
+				</div>
+				<div class="wraper">
+					<span class="contato">Contato:</span> <span class="texto-contato">${cliente.email} </span><a href="controller.do?command=VisualizarMeusDadosCompra&idCliente=${cliente.idCliente}">Alterar</a>
+					<hr> 
+					<span class="contato">Enviar para:</span> <span class="texto-contato">${cliente.endereco}, ${cliente.numero}, ${cliente.cpf}, ${cliente.bairro}, ${cliente.estado}, ${cliente.cep} </span><a href="controller.do?command=VisualizarMeusDadosCompra&idCliente=${cliente.idCliente}">Alterar</a> 
+				</div>
+				<div class="divBtn">
+					<a class="text-dark voltar" href="controller.do?command=Carrinho">‹ Voltar para o carrinho</a>
+					<a class="btn btn-danger btn-lg pagto" href="" role="button">Continuar com o pagamento</a>
+				</div>
 			</div>
 		</div>
 		<div class="itens">
+			<c:set var="total" value="${0}"/>
 			<c:forEach var="produto" items	="${listaCarrinho}">
 				<div class="prod">
 					<a class="puxar" href="controller.do?command=VisualizarProdutoPagina&idProduto=${produto.idProduto}">
@@ -62,17 +55,18 @@
 					
 				</div>
 				<div class="clear"></div>
+				<c:set var="total" value="${total + (produto.produto.valor*produto.quantidade)}"/>
 			</c:forEach>
 			<hr>
 			<div class="separacao">
-				<p>Subtotal<span class="preco">${carrinho.valorTotal}</span></p>
+				<p>Subtotal<span class="preco"><c:out value="${total}"/></span></p>
 			</div>
 			<div class="separacao">
 				<p>Frete<span class="valor">Gratis</span></p>
 			</div>
 			<hr>
 			<div class="separacao">
-				<p>Total<span class="preco">${carrinho.valorTotal}</span></p>
+				<p>Total<span class="preco"><c:out value="${total}"/></span></p>
 			</div>
 		</div>
 		</div>

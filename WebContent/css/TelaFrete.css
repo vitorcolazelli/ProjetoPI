@@ -15,6 +15,12 @@
 	margin-bottom: 40px;
 }
 
+.wraper{
+	border: 1px solid #e6e6e6;
+	border-radius: 10px;
+	padding: 10px;
+}
+
 td{
 	padding-top: 10px;
 }
