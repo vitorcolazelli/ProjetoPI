@@ -30,12 +30,15 @@
 			<div class="container">
 				<a href="TelaInicial.jsp"><img class="imgLogo" src="./imagens/logo.png" ></a>
 				<div class="caminho">
-					<a href="controller.do?command=Carrinho"><span>Carrinho</span></a> › <a href="controller.do?command=CarregarPedido"><span>Frete</span></a> › <span>Pagamento</span>
+					<a class="linkHead" href="controller.do?command=Carrinho"><span>Carrinho</span></a> › 
+					<a class="linkHead" href="controller.do?command=CarregarPedido"><span>Frete</span></a> › <span class="pagmt">Pagamento</span>
 				</div>
 				<div class="wraper">
-					<span class="contato">Contato:</span> <span class="texto-contato">${cliente.email} </span><a href="controller.do?command=VisualizarMeusDadosCompra&idCliente=${cliente.idCliente}">Alterar</a>
-					<hr> 
-					<span class="contato">Enviar para:</span> <span class="texto-contato">${cliente.endereco}, ${cliente.numero}, ${cliente.cpf}, ${cliente.bairro}, ${cliente.estado}, ${cliente.cep} </span><a href="controller.do?command=VisualizarMeusDadosCompra&idCliente=${cliente.idCliente}">Alterar</a> 
+					<div class="alinhamento">
+					<span class="contato">Contato: </span><span class="texto-contato"> ${cliente.email} </span></div><div class="alinhaBtn"><a class="linkBtn" href="controller.do?command=VisualizarMeusDadosCompra&idCliente=${cliente.idCliente}">Alterar</a></div><div class="clear"></div>
+					<hr>
+					<div class="alinhamento">
+					<span class="contato">Enviar para: </span> <span class="texto-contato"> ${cliente.endereco}, ${cliente.numero}, ${cliente.cpf}, ${cliente.bairro}, ${cliente.estado}, ${cliente.cep} </span></div><div class="alinhaBtn"><a class="linkBtn" href="controller.do?command=VisualizarMeusDadosCompra&idCliente=${cliente.idCliente}">Alterar</a></div><div class="clear"></div> 
 				</div>
 				<div class="divBtn">
 					<a class="text-dark voltar" href="controller.do?command=Carrinho">‹ Voltar para o carrinho</a>
@@ -45,6 +48,8 @@
 		</div>
 		<div class="itens">
 			<c:set var="total" value="${0}"/>
+			<c:set var="frete" value="${16}"/>
+			<c:set var="subtotal" value="${0}"/>
 			<c:forEach var="produto" items	="${listaCarrinho}">
 				<div class="prod">
 					<a class="puxar" href="controller.do?command=VisualizarProdutoPagina&idProduto=${produto.idProduto}">
@@ -56,17 +61,18 @@
 				</div>
 				<div class="clear"></div>
 				<c:set var="total" value="${total + (produto.produto.valor*produto.quantidade)}"/>
+				<c:set var="subtotal" value="${total + frete}"/>
 			</c:forEach>
 			<hr>
 			<div class="separacao">
-				<p>Subtotal<span class="preco"><c:out value="${total}"/></span></p>
+				<p>Total<span class="preco"><c:out value="${total}"/></span></p>
 			</div>
 			<div class="separacao">
-				<p>Frete<span class="valor">Gratis</span></p>
+				<p>Frete<span class="preco"><c:out value="${frete}"/></span></p>
 			</div>
 			<hr>
 			<div class="separacao">
-				<p>Total<span class="preco"><c:out value="${total}"/></span></p>
+				<p>SubTotal<span class="preco"><c:out value="${subtotal}"/></span></p>
 			</div>
 		</div>
 		</div>

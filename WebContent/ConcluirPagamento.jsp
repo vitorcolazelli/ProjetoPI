@@ -39,35 +39,39 @@
 				<a href="TelaInicial.jsp"><img class="imgLogo"
 					src="./imagens/logo.png"></a>
 				<div class="caminho">
-					<a href="controller.do?command=Carrinho"><span>Carrinho</span></a>
-					› <a href="controller.do?command=CarregarPedido"><span>Frete</span></a>
-					› <a href="controller.do?command=CarregarPagamento"><span>Pagamento</span></a>
+					<a class="linkHead" href="controller.do?command=Carrinho"><span>Carrinho</span></a>
+					› <a class="linkHead" href="controller.do?command=CarregarPedido"><span>Frete</span></a>
+					› <a class="linkHead" href="controller.do?command=CarregarPagamento"><span>Pagamento</span></a>
 				</div>
+				<form action="controller.do" method="post">
 				<div class="Pagamento">
 					<div class ="Cartao">
 					<i class="material-icons icon">credit_card</i>
-					<input type="radio" name="pagamento" id="radio-cartao" checked>
+					<input type="radio" value="2" name="pagamento" id="radio-cartao" checked>
 					<span class="CartaoS">Cartão</span>
 					</div>
 					
 					<div class= "Boleto">
 					<i class="material-icons icon">receipt</i>
-					<input type="radio" name="pagamento" id="radio-boleto" checked>
+					<input type="radio" value="1" name="pagamento" id="radio-boleto" checked>
 					<span class="BoletoS">Boleto</span>
 					</div> 
+					<input type="hidden" name="idPedido" value="${produto.idPedido}"/>
 					<hr>
-					
 				</div>
-
+				
 				<div class="divBtn">
 					<a class="text-dark voltar"
-						href="controller.do?command=CarregarPedido">‹ Voltar para o
-						frete</a> <a class="btn btn-danger btn-lg pagto" href="" role="button">Continuar
-						com o pagamento</a>
+						href="controller.do?command=CarregarPedido">‹ Voltar para o	frete</a> 
+						<button class="btn btn-danger btn-lg pagto" value="FinalizarCompra" name="command" role="button">Finalizar Compra</button>
 				</div>
+				</form>
 			</div>
 		</div>
 		<div class="itens">
+		<c:set var="total" value="${0}"/>
+		<c:set var="frete" value="${16}"/>
+		<c:set var="subtotal" value="${0}"/>
 			<c:forEach var="produto" items="${listaCarrinho}">
 				<div class="prod">
 					<a class="puxar"
@@ -79,23 +83,19 @@
 
 				</div>
 				<div class="clear"></div>
+				<c:set var="total" value="${total + (produto.produto.valor*produto.quantidade)}"/>
+				<c:set var="subtotal" value="${total + frete}"/>
 			</c:forEach>
 			<hr>
 			<div class="separacao">
-				<p>
-					Subtotal<span class="preco">${carrinho.valorTotal}</span>
-				</p>
+				<p>Subtotal<span class="preco"><c:out value="${total}"/></span></p>
 			</div>
 			<div class="separacao">
-				<p>
-					Frete<span class="valor">Gratis</span>
-				</p>
+				<p>	Frete<span class="preco"><c:out value="${frete}"/></span> </p>
 			</div>
 			<hr>
 			<div class="separacao">
-				<p>
-					Total<span class="preco">${carrinho.valorTotal}</span>
-				</p>
+					<p>SubTotal<span class="preco"><c:out value="${subtotal}"/></span></p>
 			</div>
 		</div>
 	</div>

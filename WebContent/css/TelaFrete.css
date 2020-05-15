@@ -19,6 +19,7 @@
 	border: 1px solid #e6e6e6;
 	border-radius: 10px;
 	padding: 10px;
+	font-size: 12px;
 }
 
 td{
@@ -33,9 +34,6 @@ td{
 	border-left: 1px solid #e6e6e6;
 }
 
-a span{
-	color: black;
-}
 
 .nome{
 	font-size: 16px;
@@ -46,18 +44,15 @@ strong.nome:hover{
 	text-decoration:none;
 }
 
-span{
-	color: rgb(160, 160, 160);	
-}
 
 .contato{
-	font-size: 18px;
-	font-weight:bold;
-	color: black;
+	font-size: 14px;
+	color: rgb(160, 160, 160);
+	text-align: left;
 	 
 }
 .texto-contato{
-	font-size: 16px;
+	font-size: 12px;
 	color: black;
 }
 
@@ -116,4 +111,37 @@ label{
 .imgLogo{
 	heigth: 40px;
 	width: 250px;
+}
+
+.alinhamento{
+	float: left;
+}
+
+.alinhaBtn{
+	float: right;
+}
+
+a.linkBtn{
+	color: black;
+}
+
+a.linkBtn:hover{
+	text-decoration: none;
+}
+
+a.voltar:hover{
+	text-decoration: none;
+}
+
+a.linkHead{
+	color:black;
+}
+
+a.linkHead:hover{
+	text-decoration: none;
+	color: rgb(175, 175, 175);
+}
+
+.pagmt{
+	color: rgb(175, 175, 175);
 }

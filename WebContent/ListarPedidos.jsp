@@ -103,6 +103,10 @@
 								<tr>
 									<th class="classID">ID</th>
 									<th class="classValor">Valor</th>
+									<th class="class">Cliente</th>
+									<th class="class">Forma de Pagamento</th>
+									<th class="class">Status</th>
+									<th class="class">DataPedido</th>
 									<th class="actions">Ações</th>
 								</tr>
 							</thead>

@@ -35,11 +35,11 @@ public class PedidoDAO {
 	}
 
 	public void atualizar(Pedido pedido) {
-		String sqlUpdate = "UPDATE pedido SET ValorTotal=?, status = ?, dataPedido = now() WHERE idPedido=?";
+		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , status = 'pedido' , dataPedido = now() WHERE idPedido=?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setDouble(1, pedido.getValorTotal());
-			stm.setString(2, pedido.getStatus());
+			stm.setInt(1, pedido.getCliente_idCliente());
+			stm.setInt(2, pedido.getFormaPagamento_idPagamento());
 			stm.setInt(3, pedido.getIdPedido());
 			stm.execute();
 		} catch (Exception e) {

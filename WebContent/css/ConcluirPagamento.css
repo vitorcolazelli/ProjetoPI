@@ -27,9 +27,6 @@ td{
 	border-left: 1px solid #e6e6e6;
 }
 
-a span{
-	color: black;
-}
 
 .nome{
 	font-size: 16px;
@@ -128,4 +125,18 @@ label{
 .imgLogo{
 	heigth: 40px;
 	width: 250px;
+}
+
+
+a.voltar{
+	text-decoration: none;
+}
+
+a.linkHead{
+	color:black;
+}
+
+a.linkHead:hover{
+	text-decoration: none;
+	color: rgb(175, 175, 175);
 }
