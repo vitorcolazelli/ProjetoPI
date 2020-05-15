@@ -39,7 +39,7 @@
 				</div>
 				<div class="divBtn">
 					<a class="text-dark voltar" href="controller.do?command=Carrinho">‹ Voltar para o carrinho</a>
-					<a class="btn btn-danger btn-lg pagto" href="" role="button">Continuar com o pagamento</a>
+					<a class="btn btn-danger btn-lg pagto" href="controller.do?command=CarregarPagamento" role="button">Continuar com o pagamento</a>
 				</div>
 			</div>
 		</div>
