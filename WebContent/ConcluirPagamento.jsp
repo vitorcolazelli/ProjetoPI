@@ -459,7 +459,6 @@
 										<option value="10x">10x - ${subtotal} sem juros</option>
 										<option value="11x">11x - ${subtotal} sem juros</option>
 										<option value="12x">12x - ${subtotal} sem juros</option>
-										
 								</select>
 							</div>
 						</div>
