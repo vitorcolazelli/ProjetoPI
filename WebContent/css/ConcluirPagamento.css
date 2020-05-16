@@ -145,3 +145,27 @@ a.linkHead:hover{
 .vlrqtd{
 	margin-top: 37px;
 }
+
+select{
+	display: inline-block;
+	
+}
+
+.TituloTrf{
+	font-size:22px;
+	font-weight:bold;
+}
+
+.ContainerTransf{
+	text-align:left;
+	
+	
+}
+
+.Inf{
+	font-size:19px;
+	font-weight:bold;
+	
+	
+}
+
