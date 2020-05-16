@@ -46,8 +46,6 @@
 						</a>
 							<div class="dropdown-menu dropdown-menu-right"
 								aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Minha Conta</a>
-								<div class="dropdown-divider"></div>
 								<a class="dropdown-item"
 									href="controller.do?command=EfetuarLogoffAdm">Logoff</a>
 							</div></li>

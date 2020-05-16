@@ -57,10 +57,8 @@
 							aria-expanded="false"> <i class="material-icons icon">
 									person </i> <span class="text"> <c:out value="${logNomeAdm}"></c:out></span>
 						</a>
-							<div class="dropdown-menu dropdown-menu-right"
+						<div class="dropdown-menu dropdown-menu-right"
 								aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="#">Minha Conta</a>
-								<div class="dropdown-divider"></div>
 								<a class="dropdown-item"
 									href="controller.do?command=EfetuarLogoffAdm">Logoff</a>
 							</div></li>

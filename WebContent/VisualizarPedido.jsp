@@ -14,7 +14,6 @@
 </style>
 <head>
 <script src="js/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>	<script>
 		$(document).ready(function(){
 			var changeval = function () {

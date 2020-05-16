@@ -149,7 +149,6 @@
 			</div>
 		</form>
 	</div>
-	<script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).on('click',".deleteModal", function(event) {
 		var button = $(this); //botao que disparou a modal
