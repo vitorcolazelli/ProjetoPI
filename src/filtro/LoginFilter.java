@@ -22,7 +22,7 @@ import model.Administrador;
         "/EditarCliente.jsp", "/EditarColecao.jsp", "/EditarProduto.jsp",
         "/VisualizarAdministrador.jsp", "/VisualizarCliente.jsp", "/VisualizarColecao.jsp",
         "/VisualizarProduto.jsp", "/TelaCadastroAdministrador.jsp","/TelaCadastroColecao.jsp", "/TelaCadastroProduto.jsp", "/Menu.jsp",
-        "/MenuAdm.jsp", "/MenuAdmLista.jsp", "/footer.jsp", "/header.jsp", })
+        "/MenuAdm.jsp", "/MenuAdmLista.jsp", "/footer.jsp", "/header.jsp",})
 public class LoginFilter implements Filter {
 
 	public LoginFilter() {

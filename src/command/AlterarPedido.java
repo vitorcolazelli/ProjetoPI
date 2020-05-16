@@ -17,15 +17,11 @@ public class AlterarPedido implements Command {
 	public void executar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String pIdPedido = request.getParameter("idPedido");
+		String pIdCliente = request.getParameter("idCliente");
 		String pValorTotal = request.getParameter("valorTotal");
+		String pFormaPagamento = request.getParameter("formaPagamento_idPagamento");
 		String pStatus = request.getParameter("status");
 		
-		float valorTotal = 0.0f;
-		try {
-			valorTotal = Float.parseFloat(pValorTotal);
-		}catch(NumberFormatException e) {
-			
-		}
 		
 		int idPedido = -1;
 		try {
@@ -34,15 +30,39 @@ public class AlterarPedido implements Command {
 		
 		}
 		
+		double valorTotal = 0.0;
+		try {
+			valorTotal = Double.parseDouble(pValorTotal);
+		}catch(NumberFormatException e) {
+			
+		}
+		
+		int idCliente = -1;
+		try {
+			idCliente = Integer.parseInt(pIdCliente);
+		} catch (NumberFormatException e) {
+		
+		}
+		
+		int formaPagamento_idPagamento = -1;
+		try {
+			formaPagamento_idPagamento = Integer.parseInt(pFormaPagamento);
+		} catch (NumberFormatException e) {
+		
+		}
+		
 		Pedido pedido = new Pedido();
 		pedido.setIdPedido(idPedido);
 		pedido.setValorTotal(valorTotal);
 		pedido.setStatus(pStatus);
+		pedido.setCliente_idCliente(idCliente);
+		pedido.setFormaPagamento_idPagamento(formaPagamento_idPagamento);
+
 		
 		PedidoService cs = new PedidoService();
 		RequestDispatcher view = null;
 		
-		cs.atualizar(pedido);
+		cs.atualizarAdm(pedido);
 		request.setAttribute("pedido", pedido);
 		view = request.getRequestDispatcher("VisualizarPedido.jsp");
 		

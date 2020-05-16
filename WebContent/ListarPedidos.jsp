@@ -13,7 +13,22 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y="
 	crossorigin="anonymous" />
-<link href="css/ListaColecoes.css" rel="stylesheet">
+<link href="css/ListaPedidos.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>	<script>
+		$(document).ready(function(){
+			var changeval = function () {
+			       var p = $(this).text();
+			       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
+			       $(this).text(nval);
+			    }
+	
+			     $('.preco')
+			    .each(changeval)
+			    .on('change', changeval);     	    
+		  });
+	</script>
 </head>
 <body>
 	<!-- Modal -->
@@ -61,8 +76,6 @@
 			<div class="botoes">
 				<div id="top" class="row">
 					<div class="col-md-4">
-						<a href="TelaCadastroPedido.jsp" class="btn btn-light">Novo
-							Pedido</a>
 						<div class="botaoAdm">
 							<div class="col-md-4">
 								<a href="controller.do?command=ListarPedidosReiniciar"
@@ -114,7 +127,11 @@
 								<c:forEach var="pedido" items="${lista }">
 							<tr>
 								<td>${pedido.idPedido }</td>
-								<td>${pedido.valorTotal }</td>
+								<td class="preco">${pedido.valorTotal }</td>
+								<td>${pedido.cliente_idCliente }</td>
+								<td>${pedido.formaPagamento_idPagamento }</td>
+								<td>${pedido.status }</td>
+								<td>${pedido.dataPedido }</td>
 								<td class="actions"><a class="btn btn-success btn-xs"
 									href="controller.do?command=VisualizarPedido&idPedido=${pedido.idPedido }">Visualizar</a>
 
@@ -134,7 +151,6 @@
 			</div>
 		</c:if>
 	</div>
-	<script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).on('click',".deleteModal", function(event) {
 		var button = $(this); //botao que disparou a modal

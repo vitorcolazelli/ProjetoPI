@@ -13,6 +13,21 @@
 	}
 </style>
 <head>
+<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>	<script>
+		$(document).ready(function(){
+			var changeval = function () {
+			       var p = $(this).text();
+			       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
+			       $(this).text(nval);
+			    }
+	
+			     $('.preco')
+			    .each(changeval)
+			    .on('change', changeval);     	    
+		  });
+	</script>
 <!-- Bootstrap CSS -->
 </head>
 <body>
@@ -57,22 +72,53 @@
 				</p>
 			</div>
 			</div>
-				<div class="row">
+			<div class="row">
 			<div class="form-group col-md-12">
 				<p>
-					<strong>Valor Total: </strong> <br> ${pedido.valorTotal}
+					<strong>Id Cliente: </strong> <br> ${pedido.cliente_idCliente}
 				</p>
 			</div>
 			</div>
+			<div class="row">
+			<div class="form-group col-md-12">
+				<p>
+					<strong>Valor Total: </strong> <br><span class="preco">${pedido.valorTotal}</span>
+				</p>
+			</div>
+			</div>
+			<div class="row">
+			<div class="form-group col-md-12">
+				<p>
+					<strong>Forma de Pagamento: </strong> <br> ${pedido.formaPagamento_idPagamento}
+				</p>
+			</div>
+			</div>
+			<div class="row">
+			<div class="form-group col-md-12">
+				<p>
+					<strong>Status do Pedido: </strong> <br> ${pedido.status}
+				</p>
+			</div>
+			</div>
+			
+				<div class="row">
+			<div class="form-group col-md-12">
+				<p>
+					<strong>Data do Pedido: </strong> <br> ${pedido.dataPedido}
+				</p>
+			</div>
+			</div>
+			
 			<hr />
 			<div class="containerLogin">
 				<div id="actions" class="row">
 					<div class="md-col-12">
 						<a class="btn btn-primary btn-sm"
 							href="controller.do?command=EditarPedido&idPedido=${pedido.idPedido}">Editar</a>
-						<button id="btn${pedido.idPedido}%>" type="button"
-							class="btn btn-danger btn-sm" data-toggle="modal"
-							data-target="#delete-modal" data-cliente="${pedido.idPedido }">Excluir</button>
+									<button id="btn${pedido.idPedido }%>" type="button"
+										class="btn btn-danger deleteModal" data-toggle="modal"
+										data-target="#delete-modal"
+										data-cliente="${pedido.idPedido }">Excluir</button>
 
 						<a href="controller.do?command=ListarPedido" class="btn btn-light btn-sm"
 							role="button" aria-pressed="true">Voltar</a>
@@ -83,11 +129,11 @@
 </div>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
-	$("#delete-modal").on('show.bs.modal', function(event) {
-		var button = $(event.relatedTarget); //botao que disparou a modal
-		var recipient = button.data('administrador');
-		$("#id_excluir").val(recipient);
+	$(document).on('click',".deleteModal", function(event) {
+		var button = $(this); //botao que disparou a modal
+		var recipient = button.data('cliente');
+		$(".modal-footer #id_excluir").val(recipient);
 	});
-</script>
+	</script>
 </body>
 </HTML>

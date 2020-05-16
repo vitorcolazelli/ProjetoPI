@@ -47,6 +47,21 @@ public class PedidoDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void atualizarAdm(Pedido pedido) {
+		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = ?  WHERE idPedido=?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setInt(1, pedido.getCliente_idCliente());
+			stm.setInt(2, pedido.getFormaPagamento_idPagamento());
+			stm.setDouble(3, pedido.getValorTotal());
+			stm.setString(4, pedido.getStatus());
+			stm.setInt(5, pedido.getIdPedido());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public void excluir(int idPedido) {
 		String sqlDelete = "DELETE FROM pedido WHERE idPedido = ?";
@@ -80,11 +95,17 @@ public class PedidoDAO {
 			stm.setInt(1, pedido.getIdPedido());
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
-					pedido.setValorTotal(rs.getFloat("valorTotal"));
+					pedido.setCliente_idCliente(rs.getInt("cliente_idCliente"));
+					pedido.setFormaPagamento_idPagamento(rs.getInt("f_pagamento_idPagamento"));
+					pedido.setValorTotal(rs.getDouble("valorTotal"));
 					pedido.setStatus(rs.getString("status"));
+					pedido.setDataPedido(rs.getDate("dataPedido"));
 				} else {
 					pedido.setIdPedido(-1);
+					pedido.setCliente_idCliente(-1);
+					pedido.setFormaPagamento_idPagamento(-1);
 					pedido.setValorTotal(0);
+					pedido.setDataPedido(null);
 					pedido.setStatus(null);
 				}
 			} catch (SQLException e) {
@@ -99,15 +120,23 @@ public class PedidoDAO {
 	public ArrayList<Pedido> listarPedidos() {
 		Pedido pedido;
 		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT idPedido, ValorTotal FROM Pedido";
+		String sqlSelect = "SELECT * FROM Pedido";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			try (ResultSet rs = stm.executeQuery();) {
 				while (rs.next()) {
 					pedido = new Pedido();
 					pedido.setIdPedido(rs.getInt("idPedido"));
-					pedido.setValorTotal(rs.getFloat("valorTotal"));
+					pedido.setValorTotal(rs.getDouble("valorTotal"));
+					pedido.setDataPedido(rs.getDate("dataPedido"));
+					pedido.setCliente_idCliente(rs.getInt("cliente_idCliente"));
+					pedido.setFormaPagamento_idPagamento(rs.getInt("f_pagamento_idPagamento"));
+					pedido.setStatus(rs.getString("status"));
 					lista.add(pedido);
+					
+					
+					
+					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -121,15 +150,19 @@ public class PedidoDAO {
 	public ArrayList<Pedido> listarPedidos(String chave) {
 		Pedido pedido;
 		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT idPedido, ValorTotal FROM pedido where upper(idPedido)like ?";
+		String sqlSelect = "SELECT * FROM pedido where upper(cliente_idCliente)like ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setString(1, "%" + chave.toUpperCase() + "%");
 			try (ResultSet rs = stm.executeQuery();) {
 				while (rs.next()) {
 					pedido = new Pedido();
-					pedido.setIdPedido(rs.getInt("idAdministrador"));
-					pedido.setValorTotal(rs.getFloat("valorTotal"));
+					pedido.setIdPedido(rs.getInt("idPedido"));
+					pedido.setValorTotal(rs.getDouble("valorTotal"));
+					pedido.setDataPedido(rs.getDate("dataPedido"));
+					pedido.setCliente_idCliente(rs.getInt("cliente_idCliente"));
+					pedido.setFormaPagamento_idPagamento(rs.getInt("f_pagamento_idPagamento"));
+					pedido.setStatus(rs.getString("status"));
 					lista.add(pedido);
 				}
 			} catch (SQLException e) {
