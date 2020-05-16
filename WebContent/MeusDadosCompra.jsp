@@ -103,7 +103,7 @@
 			<div class="containerLogin">
 				<div id="actions" class="row">
 					<div class="md-col-12">
-						<button type="submit" class="btn btn-primary" name="command" value="AlterarMeusDadosCompra">Alterar</button>
+						<button type="submit" class="btn btn-primary" name="command" value="AlterarMeusDadosCompra">Salvar</button>
 						<a href="controller.do?command=CarregarPedido" class="btn btn-danger"
 							role="button" aria-pressed="true">Cancelar</a>
 					</div>

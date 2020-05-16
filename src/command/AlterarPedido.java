@@ -22,7 +22,6 @@ public class AlterarPedido implements Command {
 		String pFormaPagamento = request.getParameter("formaPagamento_idPagamento");
 		String pStatus = request.getParameter("status");
 		
-		
 		int idPedido = -1;
 		try {
 			idPedido = Integer.parseInt(pIdPedido);

@@ -20,7 +20,7 @@
 				<hr>
 				<div class="insercoes">
 					<a class="btn btn-dark" href="controller.do?command=VisualizarMeusDados&idCliente=${cliente.idCliente}" role="button">Meus Dados</a>
-					<a class="btn btn-dark" href="ListarColecoes.jsp" role="button">Meus Pedidos</a>
+					<a class="btn btn-dark" href="controller.do?command=Pedidos" role="button">Meus Pedidos</a>
 				</div>
 			</div>
 		</div>

@@ -202,6 +202,29 @@ public class PedidoDAO {
 		}
 		return pedido;
 	}
+	
+	public Pedido listarPedidosCliente(int idCliente) {
+		Pedido pedido = new Pedido();
+		String sqlSelect = "SELECT * FROM Pedido WHERE status = 'pedido' AND cliente_idCliente = ?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, idCliente);
+			try (ResultSet rs = stm.executeQuery();) {
+				if (rs.next()) {
+					pedido.setIdPedido(rs.getInt("idPedido"));
+					pedido.setValorTotal(rs.getDouble("valorTotal"));
+					pedido.setCliente_idCliente(rs.getInt("cliente_idCliente"));
+					pedido.setFormaPagamento_idPagamento(rs.getInt("f_Pagamento_idPagamento"));
+					pedido.setStatus(rs.getString("status"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return pedido;
+	}
 
 	public ArrayList<ItemPedido> ListarItensPedido(int idPedido) {
 		ArrayList<ItemPedido> lista = new ArrayList<>();

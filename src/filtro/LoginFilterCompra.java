@@ -17,7 +17,7 @@ import model.Cliente;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter(filterName="LoginFilterCompra", urlPatterns= {"/FinalizarCompra.jsp", "/CarrinhoVazio.jsp","/MeusDados.jsp", "/Carrinho.jsp", "/MeusDadosCompra.jsp",  "/MeusDados.jsp","/MinhaConta.jsp", "/ConcluirPagamento.jsp","/TelaFrete.jsp",})
+@WebFilter(filterName="LoginFilterCompra", urlPatterns= {"/FinalizarCompra.jsp", "/CarrinhoVazio.jsp","/MeusDados.jsp", "/Carrinho.jsp", "/MeusDadosCompra.jsp",  "/MeusDados.jsp","/MinhaConta.jsp", "/ConcluirPagamento.jsp","/TelaFrete.jsp", "/CompraFinalizada.jsp",})
 public class LoginFilterCompra implements Filter {
 
 	public LoginFilterCompra() {

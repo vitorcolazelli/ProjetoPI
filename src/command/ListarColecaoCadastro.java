@@ -22,7 +22,7 @@ public class ListarColecaoCadastro implements Command {
 		ArrayList<Colecao> lista = null;
 		HttpSession session = request.getSession();
 		
-				lista = cs.listarColecaoCadastro();
+			lista = cs.listarColecaoCadastro();
 
 			session.setAttribute("lista", lista);
 			

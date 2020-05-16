@@ -38,20 +38,8 @@
 				<h3 class="page-header" align="center">Editar Pedido</h3>
 				<br>
 				<form action="controller.do " method="post">
-					<div class="row">
-						<div class="form-group col-md-12 linha">
-							<label for="valorTotal">Id Pedido:
-							</label> <input value="${pedido.idPedido}" type="text" class="form-control"
-								name="idPedido" id="idPedido" disabled  />
-						</div>
-					</div>
-					<div class="row">
-						<div class="form-group col-md-12 linha">
-							<label for="valorTotal">Id Cliente:
-							</label> <input value="${pedido.cliente_idCliente}" type="text" class="form-control"
-								name="idCliente" id="idCliente" disabled  />
-						</div>
-					</div>
+					<input value="${pedido.idPedido}" type="hidden" class="form-control" name="idPedido" id="idPedido" />
+					<input value="${pedido.cliente_idCliente}" type="hidden" class="form-control" name="idCliente" id="idCliente"/>
 					<div class="row">
 						<div class="form-group col-md-12 linha">
 							<label for="valorTotal">Valor Total:

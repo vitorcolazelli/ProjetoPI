@@ -54,6 +54,10 @@ public class PedidoService {
 		return dao.listarPedidosCarrinho(idCliente);
 	}
 	
+	public Pedido listarPedidosClientes(int idCliente) {
+		return dao.listarPedidosCliente(idCliente);
+	}
+	
 	public ArrayList<ItemPedido> ListarItensPedido(int idPedido) {
 		return dao.ListarItensPedido(idPedido);
 	}

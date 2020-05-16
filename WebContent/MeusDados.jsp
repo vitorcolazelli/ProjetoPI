@@ -105,7 +105,7 @@
 			<div class="containerLogin">
 				<div id="actions" class="row">
 					<div class="md-col-12">
-						<button type="submit" class="btn btn-primary" name="command" value="AlterarMeusDados">Alterar</button>
+						<button type="submit" class="btn btn-primary" name="command" value="AlterarMeusDados">Salvar</button>
 						<a href="MinhaConta.jsp" class="btn btn-danger"
 							role="button" aria-pressed="true">Cancelar</a>
 					</div>

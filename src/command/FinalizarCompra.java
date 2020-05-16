@@ -53,7 +53,7 @@ public class FinalizarCompra implements Command {
 		
 		cs.atualizar(pedido);
 		request.setAttribute("pedido", pedido);
-		view = request.getRequestDispatcher("TelaInicial.jsp");
+		view = request.getRequestDispatcher("CompraFinalizada.jsp");
 		
 		 view.forward(request, response);
 	}
