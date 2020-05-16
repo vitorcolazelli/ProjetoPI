@@ -6,7 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/ConcluirPagamento.css" rel="stylesheet">
+<link href="css/CompraFinalizada.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/material-design-icons/3.0.1/iconfont/material-icons.min.css"
+	integrity="sha256-x8PYmLKD83R9T/sYmJn1j3is/chhJdySyhet/JuHnfY="
+	crossorigin="anonymous" />
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"
 	type="text/javascript"></script>
@@ -29,22 +33,34 @@
 </script>
 </head>
 <body>
-	<div class="container">
-		<div class="principal" align="center">
-			<div class="container">
-				<a href="TelaInicial.jsp"><img class="imgLogo" src="./imagens/logo.png"></a>
-				<div class="Pagamento">
-				
-				</div>
-				<div class="divBtn">
-					<a class="text-dark voltar" href="TelaInicial.jsp">‹ Voltar para a Loja</a>
-					<a class="btn btn-danger btn-lg pagto" href="controller.do?command=Pedidos" role="button">Meus Pedidos</a>
+	<form action="controller.do" method="post">
+		<div class="container">
+			<div class="principal" align="center">
+				<div class="container">
+					<a href="TelaInicial.jsp"><img class="imgLogo"
+						src="./imagens/logo.png"></a>
+					<div class="caminho">
+					</div>
+					<div class="Pagamento">
+						<p class="cortext">Compra Finalizada com sucesso!!</p>
+						<hr>
+						<br>
+						<p class="cormsg">Agora só aguardar, após a aprovação do pagamento, seu pedido chegará entre 3 à 5 dias úteis</p>
+						
+						
+					</div>
+
+					<div class="divBtn">
+						<a class="btn btn-dark btn-lg btn-block pagto" href="controller.do?command=Pedidos"><strong>Visualizar meus pedidos</strong></a>
+					
+						<a class="btn btn-danger btn-lg btn-block pagto" href="TelaInicial.jsp"><strong>Voltar para o site</strong></a>
+
+					</div>
+
 				</div>
 			</div>
 		</div>
-		<div class="itens">
-		</div>
-	</div>
+	</form>
 	<div class="clear"></div>
 </body>
 </HTML>
