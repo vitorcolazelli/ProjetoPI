@@ -68,15 +68,19 @@
                         </c:forEach>
                     </tbody>
                 </table>
+                <hr>
                 <div class="valores">
+                	<h3>Resumo do Pedido</h3>
+                	<hr>
                 	<div>
-                		<strong>SubTotal: </strong><span class="preco"> <c:out value="${total}"/></span>
+                		<strong>SubTotal: </strong><span class="span preco"> <c:out value="${total}"/></span>
                 	</div>
                 	<div>
-                		<strong>Frete: </strong><span class="preco"> <c:out value="${frete}"/></span>
+                		<strong>Frete: </strong><span class="span preco"> <c:out value="${frete}"/></span>
                 	</div>
+                	<hr>
                 	<div>
-                		<strong>Total: </strong><span class="preco"> ${carrinho.valorTotal}</span>
+                		<strong>Total: </strong><span class="span preco"> ${carrinho.valorTotal}</span>
                 	</div>
                 </div>
                 <div class="clear"></div>
