@@ -52,11 +52,11 @@
 			<c:set var="subtotal" value="${0}"/>
 			<c:forEach var="produto" items	="${listaCarrinho}">
 				<div class="prod">
-					<a class="puxar" href="controller.do?command=VisualizarProdutoPagina&idProduto=${produto.idProduto}">
+					<a class="puxar">
 						<img class="imgProduto" src="data:image/jpg;base64,${produto.produto.base64Image}">
 						<strong class="nome">${produto.produto.nome}</strong>
 					</a>
-					<span class="preco">${produto.produto.valor*produto.quantidade}</span>
+					<span class="preco vlrqtd">${produto.produto.valor*produto.quantidade}</span>
 					
 				</div>
 				<div class="clear"></div>

@@ -19,6 +19,7 @@
 		<br>
 		<form action="controller.do " method="post">
 			<h3>Informações do Usuário</h3>
+			<br>
 			<input type="hidden" name="idCliente" value="${cliente.idCliente}"/>
 			<div class="row">
 				<div class="form-group col-md-12 linha">
@@ -51,7 +52,9 @@
 						name="fone" id="fone" maxlength="100" />
 				</div>
 			</div>
+			<br>
 			<h3>Informações do Endereço</h3>
+			<br>
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label for="pais">País: </label> 

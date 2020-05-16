@@ -18,7 +18,7 @@ public class FinalizarCompra implements Command {
 		String pIdPedido = request.getParameter("idPedido");
 		int idCliente = (Integer)request.getSession().getAttribute("idCliente");
 		String idFormaPagamento = request.getParameter("pagamento");	
-		
+		String valorTotal = request.getParameter("total");
 		
 		int idPedido = -1;
 		try {
@@ -34,10 +34,19 @@ public class FinalizarCompra implements Command {
 		
 		}
 		
+		double total = 0.0;
+		try {
+			total = Double.parseDouble(valorTotal);
+		} catch (NumberFormatException e) {
+		
+		}
+		
+		
 		Pedido pedido = new Pedido();
 		pedido.setIdPedido(idPedido);
 		pedido.setCliente_idCliente(idCliente);
 		pedido.setFormaPagamento_idPagamento(pagamento);
+		pedido.setValorTotal(total);
 		
 		PedidoService cs = new PedidoService();
 		RequestDispatcher view = null;

@@ -36,6 +36,7 @@ td{
 
 
 .nome{
+	align: middle;
 	font-size: 16px;
 	color: black;
 }
@@ -106,6 +107,7 @@ label{
 
 .voltar{
 	float: left;
+	margin-top: 6px;
 }
 
 .imgLogo{
@@ -144,4 +146,8 @@ a.linkHead:hover{
 
 .pagmt{
 	color: rgb(175, 175, 175);
+}
+
+.vlrqtd{
+	margin-top: 37px;
 }
