@@ -51,6 +51,8 @@
 					</thead>
 					<tbody>
 					<c:set var="total" value="${0}"/>
+					<c:set var="frete" value="${16}" />
+					<c:set var="subtotal" value="${0}" />
 						<c:forEach var="produto" items	="${listaCarrinho}">
 							<tr>
 							
