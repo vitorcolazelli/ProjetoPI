@@ -50,8 +50,9 @@
 							<a class="btn btn-dark" href="controller.do?command=Pedidos&idPedido=${pedido.idPedido}">Visualizar Pedido</a>
 							<div class="tot ali"><strong>Total: </strong><span class="preco"> ${pedido.valorTotal}</span></div>
 						</div>
+						
 					</div>
-				</c:forEach>				
+				</c:forEach>								
 			</c:when>
 			<c:otherwise>
 				<div class ="carrinhoVazio">

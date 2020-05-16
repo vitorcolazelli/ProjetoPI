@@ -84,3 +84,19 @@ strong:hover{
 	font-size: 18px;
 	padding-left: 10px;
 }
+
+.tituloResumo{
+	font-weight: bold;
+}
+
+.maizin{
+	font-size: 20px;
+}
+
+.tota{
+	margin-left: 29px;
+}
+
+.btn-dark{
+	margin-bottom: 20px;
+}

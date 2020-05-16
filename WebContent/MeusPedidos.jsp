@@ -30,6 +30,7 @@
 	<c:import url="header.jsp" />
 	<c:import url="Menu.jsp" />
 	<div id="main" class="container">
+	
 		<h1 class="titulo">Pedido #${carrinho.idPedido}</h1>
 		<table class="table" >
                     <thead>
@@ -69,18 +70,22 @@
                     </tbody>
                 </table>
                 <hr>
+    				<a class="btn btn-dark" href="controller.do?command=ListarPedidoCliente" role="button">Voltar aos Meus Pedidos</a>
+                   	<a class="btn btn-dark" href="MinhaConta.jsp" role="button">Voltar à Minha Conta</a>
+                
                 <div class="valores">
-                	<h3>Resumo do Pedido</h3>
+                	<h3 class="tituloResumo">Resumo do Pedido</h3>
                 	<hr>
                 	<div>
-                		<strong>SubTotal: </strong><span class="span preco"> <c:out value="${total}"/></span>
+                		<span class="maizin">(+)</span> <strong> SubTotal: </strong><span class="span preco"> <c:out value="${total}"/></span>
                 	</div>
+                	<br>
                 	<div>
-                		<strong>Frete: </strong><span class="span preco"> <c:out value="${frete}"/></span>
+                		<span class="maizin">(+)</span> <strong> Frete: </strong><span class="span preco"> <c:out value="${frete}"/></span>
                 	</div>
                 	<hr>
-                	<div>
-                		<strong>Total: </strong><span class="span preco"> ${carrinho.valorTotal}</span>
+                	<div >
+                		<strong class="tota">Total: </strong><span class="span 	preco"> ${carrinho.valorTotal}</span>
                 	</div>
                 </div>
                 <div class="clear"></div>
