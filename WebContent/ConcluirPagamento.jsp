@@ -38,6 +38,22 @@
 
 <script>
 	$(document).ready(function() {
+		var changeval = function() {
+			var p = $(this).text();
+			var nval = new Intl.NumberFormat('pt-BR', {
+				style : 'currency',
+				currency : 'BRL',
+				minimumFractionDigits : 2
+			}).format(p);
+			$(this).text(nval);
+		}
+
+		$('.preco1').each(changeval).on('change', changeval);
+	});
+</script>
+
+<script>
+	$(document).ready(function() {
 		$("#flip").click(function() {
 			$("#panelT").slideToggle("slow");
 			$("#panelT").show();
@@ -124,9 +140,7 @@
 									<label for="modelo">Data de Vencimento: </label>
 								</div>
 								<div class="form-group col-md-4">
-									<select class="form-control" name="Mes" id="Mes"
-										 maxlength="60" placeholder="Mês">
-										<option value=""></option>
+									<select class="form-control" name="Mes" id="Mes">
 										<option value="Jan">Jan</option>
 										<option value="Fev">Fev</option>
 										<option value="Mar">Mar</option>
@@ -144,7 +158,6 @@
 								</div>
 								<div class="form-group col-md-4">
 									<select class="form-control" name="Ano" id="Ano">
-										<option value=""></option>
 										<option value="2020">2020</option>
 										<option value="2021">2021</option>
 										<option value="2022">2022</option>
@@ -441,28 +454,40 @@
 									</select>
 								</div>
 								
-							</div> 
+							</div>
+								<c:set var="total" value="${0}" />
+				<c:set var="frete" value="${16}" />
+				<c:set var="subtotal" value="${0}" />
+				<c:forEach var="produto" items="${listaCarrinho}">
+
+					<div class="clear"></div>
+					<c:set var="total"
+						value="${total + (produto.produto.valor*produto.quantidade)}" />
+					<c:set var="subtotal" value="${total + frete}" />
+				
 							<div class="row">
 							<div class="form-group col-md-4">
 							<label for="QtdParcela">Qtd de Parcelas </label></div>
 								<div class="form-group col-md-8">
 								<select class="form-control" name="QtdParcela" id="QtdParcela">
-										<option value="1x">1x - ${subtotal} sem juros</option>
-										<option value="2x">2x - ${subtotal} sem juros</option>
-										<option value="3x">3x - ${subtotal} sem juros</option>
-										<option value="4x">4x - ${subtotal} sem juros</option>
-										<option value="5x">5x - ${subtotal} sem juros</option>
-										<option value="6x">6x - ${subtotal} sem juros</option>
-										<option value="7x">7x - ${subtotal} sem juros</option>
-										<option value="8x">8x - ${subtotal} sem juros</option>
-										<option value="9x">9x - ${subtotal} sem juros</option>
-										<option value="10x">10x - ${subtotal} sem juros</option>
-										<option value="11x">11x - ${subtotal} sem juros</option>
-										<option value="12x">12x - ${subtotal} sem juros</option>
+										<option class="preco1" value="1x">${subtotal/1}</option>
+										<option class="preco1" value="2x">${subtotal/2}</option>
+										<option class="preco1" value="3x">${subtotal/3}</option>
+										<option class="preco1" value="4x">${subtotal/4}</option>
+										<option class="preco1" value="5x">${subtotal/5}</option>
+										<option class="preco1" value="6x">${subtotal/6}</option>
+										<option class="preco1" value="7x">${subtotal/7}</option>
+										<option class="preco1" value="8x">${subtotal/8}</option>
+										<option class="preco1" value="9x">${subtotal/9}</option>
+										<option class="preco1" value="10x">${subtotal/10}</option>
+										<option class="preco1" value="11x">${subtotal/11}</option>
+										<option class="preco1" value="12x">${subtotal/12}</option>
+										
 								</select>
+								</div>
 							</div>
+							</c:forEach>
 						</div>
-					</div>
 
 						<div id="panelC" style="display: none">
 							<div class="row">
@@ -543,7 +568,6 @@
 							value="FinalizarCompra" name="command" role="button">Finalizar
 							Compra</button>
 					</div>
-
 				</div>
 			<div class="itens">
 				<c:set var="total" value="${0}" />
@@ -581,6 +605,7 @@
 				</div>
 			</div>
 		</div>
+
 	</form>
 	<div class="clear"></div>
 </body>
