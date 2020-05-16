@@ -18,10 +18,10 @@ import model.Administrador;
  * Servlet Filter implementation class LoginFilter
  */
 @WebFilter(filterName="LoginFilter", urlPatterns= {"/TelaAdmin.jsp", "/ListarClientes.jsp", "/ListarAdministradores.jsp",
-        "/ListarColecoes.jsp", "/ListarProdutos.jsp", "/EditarAdministrador.jsp",
-        "/EditarCliente.jsp", "/EditarColecao.jsp", "/EditarProduto.jsp",
+        "/ListarColecoes.jsp", "/ListarProdutos.jsp", "/ListarPedidos.jsp",  "/EditarAdministrador.jsp",
+        "/EditarCliente.jsp", "/EditarColecao.jsp", "/EditarProduto.jsp", "/EditarPedido.jsp",
         "/VisualizarAdministrador.jsp", "/VisualizarCliente.jsp", "/VisualizarColecao.jsp",
-        "/VisualizarProduto.jsp", "/TelaCadastroAdministrador.jsp","/TelaCadastroColecao.jsp", "/TelaCadastroProduto.jsp", "/Menu.jsp",
+        "/VisualizarProduto.jsp", "/VisualizarPedido.jsp", "/TelaCadastroAdministrador.jsp","/TelaCadastroColecao.jsp", "/TelaCadastroProduto.jsp", "/Menu.jsp",
         "/MenuAdm.jsp", "/MenuAdmLista.jsp", "/footer.jsp", "/header.jsp",})
 public class LoginFilter implements Filter {
 
