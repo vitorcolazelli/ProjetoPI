@@ -86,9 +86,10 @@
 					<div class="md-col-12">
 						<a class="btn btn-primary btn-sm"
 							href="controller.do?command=EditarColecao&idColecao=${colecao.idColecao}">Editar</a>
-						<button id="btn${colecao.idColecao}%>" type="button"
-							class="btn btn-danger btn-sm" data-toggle="modal"
-							data-target="#delete-modal" data-cliente="${colecao.idColecao}">Excluir</button>
+						<a id="btn${colecao.idColecao }>" type="button"
+										class="btn btn-danger btn-sm deleteModal" data-toggle="modal"
+										data-target="#delete-modal" data-idColecao="${colecao.idColecao}" data-cliente="${colecao.idColecao }" href="#delete-modal">Excluir</a></td>
+
 
 						<a href="controller.do?command=ListarColecao" class="btn btn-light btn-sm"
 							role="button" aria-pressed="true">Voltar</a>
@@ -99,11 +100,11 @@
 	</div>
 <script src="js/jquery.min.js"></script>
 <script type="text/javascript">
-	$("#delete-modal").on('show.bs.modal', function(event) {
-		var button = $(event.relatedTarget); //botao que disparou a modal
-		var recipient = button.data('colecao');
-		$("#id_excluir").val(recipient);
-	});
-</script>
+		$(document).on('click',".deleteModal", function(event) {
+			var button = $(this); //botao que disparou a modal
+			var recipient = button.data('cliente');
+			$(".modal-footer #id_excluir").val(recipient);
+		});
+	</script>
 </body>
 </HTML>

@@ -14,6 +14,21 @@
 	integrity="sha256-L/W5Wfqfa0sdBNIKN9cG6QA5F2qx4qICmU2VgLruv9Y="
 	crossorigin="anonymous" />
 <link href="css/ListaProdutos.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>	<script>
+		$(document).ready(function(){
+			var changeval = function () {
+			       var p = $(this).text();
+			       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
+			       $(this).text(nval);
+			    }
+	
+			     $('.preco')
+			    .each(changeval)
+			    .on('change', changeval);     	    
+		  });
+	</script>
 </head>
 <body>
 	<!-- Modal -->
@@ -125,7 +140,7 @@
 								<td>${produto.idProduto }</td>
 								<td>${produto.nome }</td>
 								<td>${produto.modelo }</td>
-								<td>${produto.valor }</td>
+								<td class="preco">${produto.valor }</td>
 								<td>${produto.capacidade }</td>
 								<td>${produto.cor }</td>
 								<td>${produto.quantidadeEstoque}</td>

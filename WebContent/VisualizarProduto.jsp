@@ -15,7 +15,21 @@
 </style>
 
 <head>
-<!-- Bootstrap CSS -->
+<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>	<script>
+		$(document).ready(function(){
+			var changeval = function () {
+			       var p = $(this).text();
+			       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
+			       $(this).text(nval);
+			    }
+	
+			     $('.preco')
+			    .each(changeval)
+			    .on('change', changeval);     	    
+		  });
+	</script>
 </head>
 <body>
 
@@ -83,7 +97,7 @@
 			<div class="row">
 				<div class="form-group col-md-12">
 					<p>
-						<strong>Valor: </strong> <br> ${produto.valor }
+						<strong>Valor: </strong> <br><span class="preco">${produto.valor }</span>
 					</p>
 				</div>
 			</div>
@@ -124,8 +138,9 @@
 						<a class="btn btn-primary btn-sm"
 							href="controller.do?command=EditarProduto&idProduto=${produto.idProduto}">Editar</a>
 						<button id="btn${produto.idProduto }%>" type="button"
-							class="btn btn-danger btn-sm" data-toggle="modal"
-							data-target="#delete-modal" data-cliente="${produto.idProduto }">Excluir</button>
+										class="btn btn-danger btn-sm deleteModal" data-toggle="modal"
+										data-target="#delete-modal"
+										data-cliente="${produto.idProduto }">Excluir</button>
 
 						<a href="controller.do?command=ListarProduto" class="btn btn-light btn-sm"
 							role="button" aria-pressed="true">Voltar</a>
@@ -136,11 +151,11 @@
 	</div>
 	<script src="js/jquery.min.js"></script>
 	<script type="text/javascript">
-		$("#delete-modal").on('show.bs.modal', function(event) {
-			var button = $(event.relatedTarget); //botao que disparou a modal
-			var recipient = button.data('cliente');
-			$("#id_excluir").val(recipient);
-		});
+	$(document).on('click',".deleteModal", function(event) {
+		var button = $(this); //botao que disparou a modal
+		var recipient = button.data('cliente');
+		$(".modal-footer #id_excluir").val(recipient);
+	});
 	</script>
 </body>
 </HTML>

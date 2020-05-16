@@ -116,7 +116,7 @@
 						<a class="btn btn-primary btn-sm"
 							href="controller.do?command=EditarPedido&idPedido=${pedido.idPedido}">Editar</a>
 									<button id="btn${pedido.idPedido }%>" type="button"
-										class="btn btn-danger deleteModal" data-toggle="modal"
+										class="btn btn-danger btn-sm deleteModal" data-toggle="modal"
 										data-target="#delete-modal"
 										data-cliente="${pedido.idPedido }">Excluir</button>
 

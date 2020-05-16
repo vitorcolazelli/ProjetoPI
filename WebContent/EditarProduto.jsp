@@ -15,8 +15,25 @@
 
 </style>
 <head>
+
 <!-- Bootstrap CSS -->
 <link href="css/style.css" rel="stylesheet">
+<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>	<script>
+		$(document).ready(function(){
+			var changeval = function () {
+			       var p = $(this).text();
+			       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
+			       $(this).text(nval);
+			    }
+	
+			     $('.preco')
+			    .each(changeval)
+			    .on('change', changeval);     	    
+		  });
+	</script>
 </head>
 <body>
 <c:import url="MenuAdmLista.jsp"/>
@@ -28,7 +45,7 @@
 		<form action="controller.do " method="post">
 			<input type="hidden" name="idProduto" value="${produto.idProduto}" />
 			<div class="row">
-				<div class="form-group col-md-12" linha>
+				<div class="form-group col-md-12">
 					<label for="nome">Nome: </label> <input value="${produto.nome}"
 						type="text" class="form-control" name="nome" id="nome"
 						maxlength="50" />
@@ -44,7 +61,7 @@
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label for="valor">Valor: </label> <input
-						value="${produto.valor}" type="text" class="form-control"
+						value="${produto.valor}" type="text" class="form-control preco"
 						name="valor" id="valor" maxlength="50" />
 				</div>
 			</div>

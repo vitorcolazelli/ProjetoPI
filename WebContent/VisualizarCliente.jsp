@@ -161,8 +161,9 @@
 					<a class="btn btn-primary btn-sm"
 						href="controller.do?command=EditarCliente&idCliente=${cliente.idCliente}">Editar</a>
 					<button id="btn${cliente.idCliente }%>" type="button"
-						class="btn btn-danger btn-sm" data-toggle="modal"
-						data-target="#delete-modal" data-cliente="${cliente.idCliente }">Excluir</button>
+												class="btn btn-danger btn-sm deleteModal" data-toggle="modal"
+												data-target="#delete-modal"
+												data-cliente="${cliente.idCliente }">Excluir</button>
 
 					<a href="controller.do?command=ListarCliente" class="btn btn-light btn-sm"
 						role="button" aria-pressed="true">Voltar</a>
@@ -172,12 +173,12 @@
 	</form>
 </div>
 <script src="js/jquery.min.js"></script>
-<script type="text/javascript">
-	$("#delete-modal").on('show.bs.modal', function(event) {
-		var button = $(event.relatedTarget); //botao que disparou a modal
+	<script type="text/javascript">
+	$(document).on('click',".deleteModal", function(event) {
+		var button = $(this); //botao que disparou a modal
 		var recipient = button.data('cliente');
-		$("#id_excluir").val(recipient);
+		$(".modal-footer #id_excluir").val(recipient);
 	});
-</script>
+	</script>
 </body>
 </HTML>
