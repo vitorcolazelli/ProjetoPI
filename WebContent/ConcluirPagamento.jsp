@@ -493,6 +493,45 @@
 										<span class="Inf">Cidade-UF: </span> São Paulo
 									</div>
 								</div>
+								<div class="row">
+								<div class="form-group col-md-12">
+									<div class="TituloTrf">Dados do Cliente:</div>
+								</div>
+							</div>
+								<div class="row">
+								<div class="form-group col-md-12">
+									<label class="cpfC" for="modelo">CPF da Conta: </label>
+								</div>
+								</div>
+								<div class="row">
+								<div class="form-group col-md-12">
+									<input type="text" class="form-control" name="CPF" id="CPF"
+										 maxlength="3" placeholder="CPF do Titular da conta" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="cpfC" for="modelo">Número da Conta: </label>
+								</div>
+							</div>
+								<div class="row">
+								<div class="form-group col-md-12">
+									<input type="text" class="form-control" name="CPF" id="CPF"
+										 maxlength="3" placeholder="Número da conta do titular" />
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="cpfC" for="modelo">Agência da Conta: </label>
+								</div>
+							</div>
+								<div class="row">
+								<div class="form-group col-md-12">
+									<input type="text" class="form-control" name="CPF" id="CPF"
+										 maxlength="3" placeholder="Agência da conta do titular" />
+								</div>
+							</div>
+								</div>
 							</div>
 						</div>
 
@@ -507,7 +546,6 @@
 					</div>
 
 				</div>
-			</div>
 			<div class="itens">
 				<c:set var="total" value="${0}" />
 				<c:set var="frete" value="${16}" />

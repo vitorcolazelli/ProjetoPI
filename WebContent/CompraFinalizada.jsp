@@ -45,7 +45,7 @@
 						<p class="cortext">Compra Finalizada com sucesso!!</p>
 						<hr>
 						<br>
-						<p class="cormsg">Agora só aguardar, após a aprovação do pagamento, seu pedido chegará entre 3 à 5 dias úteis</p>
+						<p class="cormsg">Agora só aguardar, após a aprovação do pagamento, seu pedido chegará em até 30 dias úteis.</p>
 						
 						
 					</div>
