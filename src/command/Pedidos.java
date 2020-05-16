@@ -22,9 +22,17 @@ public class Pedidos implements Command {
 			return ;
 		}
 		int idCliente = (Integer)request.getSession().getAttribute("idCliente");
+		String pIdPedido = request.getParameter("idPedido");
+		
+		int idPedido = -1;
+		try {
+			idPedido = Integer.parseInt(pIdPedido);
+		}catch(NumberFormatException e) {
+			
+		}
 		
 		PedidoService ps = new PedidoService();
-		Pedido carrinho = ps.listarPedidosClientes(idCliente);
+		Pedido carrinho = ps.listarPedidosClientes(idCliente, idPedido);
 		
 		ProdutoService produtoService = new ProdutoService();
 		ArrayList<ItemPedido> lista = ps.ListarItensPedido(carrinho.getIdPedido());

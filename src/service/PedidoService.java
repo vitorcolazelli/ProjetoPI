@@ -38,6 +38,10 @@ public class PedidoService {
 		return dao.carregar(idPedido);
 	}
 	
+	public ArrayList<Pedido> VisualizarPedido(int idCliente){
+		return dao.VisualizarPedidos(idCliente);
+	}
+	
 	public ItemPedido carregarItem(int idPedido) throws IOException {
 		return dao.carregarItem(idPedido);
 	}
@@ -54,8 +58,8 @@ public class PedidoService {
 		return dao.listarPedidosCarrinho(idCliente);
 	}
 	
-	public Pedido listarPedidosClientes(int idCliente) {
-		return dao.listarPedidosCliente(idCliente);
+	public Pedido listarPedidosClientes(int idCliente, int idPedido) {
+		return dao.listarPedidosCliente(idCliente, idPedido);
 	}
 	
 	public ArrayList<ItemPedido> ListarItensPedido(int idPedido) {

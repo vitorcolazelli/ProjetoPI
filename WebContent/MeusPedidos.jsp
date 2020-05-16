@@ -8,7 +8,7 @@
 	<title>Pedido</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/Carrinho.css" rel="stylesheet">
+	<link href="css/MeusPedidos.css" rel="stylesheet">
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>
@@ -30,46 +30,56 @@
 	<c:import url="header.jsp" />
 	<c:import url="Menu.jsp" />
 	<div id="main" class="container">
-		<h1 class="titulo">Pedido</h1>
-		<c:choose>
-			<c:when test="${not empty listaCarrinho}">
-				<table class="table" >
-					<thead>
-						<tr>
-							<th></th>
-							<th>Preço</th>
-							<th>Quantidade</th>
-							<th>Total</th>
-						</tr>
-					</thead>
-					<tbody>
-					<c:set var="total" value="${0}"/>
-						<c:forEach var="produto" items	="${listaCarrinho}">
-							<tr>
-							
-								<td>
-									<a>
-										<img class="imgProduto" src="data:image/jpg;base64,${produto.produto.base64Image}">
-										<strong class="nome">${produto.produto.nome}</strong>
-									</a>
-								</td>
-								<td>
-									<span class="preco">${produto.produto.valor}</span>
-								</td>
-								<td>
-										<span class="">${produto.quantidade}</span>
-								</td>
-								<td>
-									<span class="preco">${produto.produto.valor*produto.quantidade}</span>
-								</td>
-								
-							</tr>
-							<c:set var="total" value="${total + (produto.produto.valor*produto.quantidade)}"/>
-						</c:forEach>
-					</tbody>
-				</table>	
-			</c:when>
-		</c:choose>
+		<h1 class="titulo">Pedido #${carrinho.idPedido}</h1>
+		<table class="table" >
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <c:set var="total" value="${0}"/>
+                    <c:set var="frete" value="${16}"/>
+                    <c:set var="subtotal" value="${0}"/>
+                        <c:forEach var="produto" items="${listaCarrinho}">
+                            <tr>
+
+                                <td>
+                                    <a>
+                                        <img class="imgProduto" src="data:image/jpg;base64,${produto.produto.base64Image}">
+                                        <strong class="nome">${produto.produto.nome}</strong>
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="preco">${produto.produto.valor}</span>
+                                </td>
+                                <td>
+                                        <span >${produto.quantidade}</span>
+                                </td>
+                                <td>
+                                    <span class="preco">${produto.produto.valor * produto.quantidade}</span>
+                                </td>
+
+                            </tr>
+                            <c:set var="total" value="${total + (produto.produto.valor * produto.quantidade)}"/>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <div class="valores">
+                	<div>
+                		<strong>SubTotal: </strong><span class="preco"> <c:out value="${total}"/></span>
+                	</div>
+                	<div>
+                		<strong>Frete: </strong><span class="preco"> <c:out value="${frete}"/></span>
+                	</div>
+                	<div>
+                		<strong>Total: </strong><span class="preco"> ${carrinho.valorTotal}</span>
+                	</div>
+                </div>
+                <div class="clear"></div>
 	</div>
 	<br>
 	<c:import url="footer.jsp" />

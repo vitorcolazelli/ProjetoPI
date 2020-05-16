@@ -133,10 +133,6 @@ public class PedidoDAO {
 					pedido.setFormaPagamento_idPagamento(rs.getInt("f_pagamento_idPagamento"));
 					pedido.setStatus(rs.getString("status"));
 					lista.add(pedido);
-					
-					
-					
-					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -203,12 +199,40 @@ public class PedidoDAO {
 		return pedido;
 	}
 	
-	public Pedido listarPedidosCliente(int idCliente) {
-		Pedido pedido = new Pedido();
+	public ArrayList<Pedido> VisualizarPedidos(int idCliente) {
+		Pedido pedido;
+		ArrayList<Pedido> lista = new ArrayList<>();
 		String sqlSelect = "SELECT * FROM Pedido WHERE status = 'pedido' AND cliente_idCliente = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, idCliente);
+			try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					pedido = new Pedido();
+					pedido.setIdPedido(rs.getInt("idPedido"));
+					pedido.setValorTotal(rs.getDouble("valorTotal"));
+					pedido.setDataPedido(rs.getDate("dataPedido"));
+					pedido.setCliente_idCliente(rs.getInt("cliente_idCliente"));
+					pedido.setFormaPagamento_idPagamento(rs.getInt("f_pagamento_idPagamento"));
+					pedido.setStatus(rs.getString("status"));
+					lista.add(pedido);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (SQLException e1) {
+			System.out.print(e1.getStackTrace());
+		}
+		return lista;
+	}
+	
+	public Pedido listarPedidosCliente(int idCliente, int idPedido) {
+		Pedido pedido = new Pedido();
+		String sqlSelect = "SELECT * FROM Pedido WHERE status = 'pedido' AND cliente_idCliente = ? AND idPedido= ?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
+			stm.setInt(1, idCliente);
+			stm.setInt(2, idPedido);
 			try (ResultSet rs = stm.executeQuery();) {
 				if (rs.next()) {
 					pedido.setIdPedido(rs.getInt("idPedido"));
