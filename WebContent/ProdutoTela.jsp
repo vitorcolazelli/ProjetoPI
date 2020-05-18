@@ -50,16 +50,19 @@
 				<h2 class="TituloProduto" align="left">
 					<strong>${produto.nome}</strong>
 				</h2>
-				<strong class="estoq">Restantes: ${produto.quantidadeEstoque} em estoque</strong>
+				<strong class="estoq">Restantes: ${produto.quantidadeEstoque} disponível em estoque</strong>
 				<br>
 				<br>
 				<span class="preco"> ${produto.valor}</span>
+			
+				<c:if test="${produto.capacidade!=null}">
 				<div class="divCapacid">
 					<h5>Capacidade:</h5>
 					<select>
 						<option value="${produto.capacidade}">${produto.capacidade}</option>
 					</select>
 				</div>
+				</c:if>
 				<div class="divCor">
 					<h5>Cores:</h5>
 					<select>
