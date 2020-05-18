@@ -120,7 +120,7 @@ public class PedidoDAO {
 	public ArrayList<Pedido> listarPedidos() {
 		Pedido pedido;
 		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT * FROM Pedido";
+		String sqlSelect = "SELECT * FROM Pedido WHERE status='pedido'";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			try (ResultSet rs = stm.executeQuery();) {

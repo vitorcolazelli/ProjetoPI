@@ -56,7 +56,7 @@
 			</c:when>
 			<c:otherwise>
 				<div class ="carrinhoVazio">
-					<p>Voce ainda nao realizou nenhum pedido</p>
+					<p class="msgVazio">Voce ainda nao realizou nenhum pedido</p>
 				 	<a class ="btn btn-outline-success Botao-xb btn-vazio" href="TelaInicial.jsp" >Voltar às Compras</a>	
 				</div>
 			</c:otherwise>

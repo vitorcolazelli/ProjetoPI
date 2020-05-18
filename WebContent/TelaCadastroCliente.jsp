@@ -160,7 +160,7 @@
 				<div class="form-group col-md-4">
 					<label for="estado">Estado: </label> <input type="text"
 						class="form-control" name="estado" id="estado" required
-						maxlength="30" placeholder="Sigla Estado" required />
+						maxlength="2" placeholder="Sigla Estado" required />
 				</div>
 				<div class="form-group col-md-4">
 					<label for="email">Bairro: </label> <input type="text"

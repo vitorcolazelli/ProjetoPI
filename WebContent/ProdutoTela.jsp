@@ -50,6 +50,9 @@
 				<h2 class="TituloProduto" align="left">
 					<strong>${produto.nome}</strong>
 				</h2>
+				<strong class="estoq">Restantes: ${produto.quantidadeEstoque} em estoque</strong>
+				<br>
+				<br>
 				<span class="preco"> ${produto.valor}</span>
 				<div class="divCapacid">
 					<h5>Capacidade:</h5>

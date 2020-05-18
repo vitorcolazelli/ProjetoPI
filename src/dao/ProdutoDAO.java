@@ -286,7 +286,7 @@ public class ProdutoDAO {
 	public ArrayList<Produto> listarProdutosColecao(int idColecao) throws IOException {
 		Produto produto;
 		ArrayList<Produto> lista = new ArrayList<>();
-		String sqlSelect = "SELECT idProduto, nome, valor, imagem_produto FROM projetopi.produto where fk_IdColecao = ?";
+		String sqlSelect = "SELECT idProduto, nome, valor, imagem_produto FROM projetopi.produto where fk_IdColecao = ? AND quantidadeEstoque > 0";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 				stm.setInt(1, idColecao);
