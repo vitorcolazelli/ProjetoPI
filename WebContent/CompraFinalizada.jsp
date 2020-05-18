@@ -51,7 +51,7 @@
 					</div>
 
 					<div class="divBtn">
-						<a class="btn btn-dark btn-lg btn-block pagto" href="controller.do?command=Pedidos"><strong>Visualizar meus pedidos</strong></a>
+						<a class="btn btn-dark btn-lg btn-block pagto" href="controller.do?command=ListarPedidoCliente"><strong>Visualizar meus pedidos</strong></a>
 					
 						<a class="btn btn-danger btn-lg btn-block pagto" href="TelaInicial.jsp"><strong>Voltar para o site</strong></a>
 
