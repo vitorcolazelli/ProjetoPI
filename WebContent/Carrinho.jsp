@@ -14,6 +14,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" type="text/javascript"></script>
 	<script>
 		$(document).ready(function(){
+			var qtdeOrignal = $("#quantidade").val(); 
+			
 			var changeval = function () {
 			       var p = $(this).text();
 			       var nval = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }).format(p);
@@ -24,12 +26,22 @@
 			    .each(changeval)
 			    .on('change', changeval);
 			     	     
-			var changeqtd = function (){
-				var formsm = $(this).parent();
-				formsm.submit();	
+			var changeqtd = function (ev){
+				if (parseInt($("#quantidade").val()) > parseInt($("#qtdEstoque").val())) {
+					alert(qtdeOrignal + " A quantidade solicitada [" + $("#quantidade").val() + "] nao esta disponivel. Verifique!");
+					$("#quantidade").val(qtdeOrignal);
+					qtdeOrignal = $("#quantidade").val(); 
+					return false;
+				}else {
+					var formsm = $(this).parent();
+					formsm.submit();	
+					
+				}
 			}
 				$('.qtdProd')
 				.on('change', changeqtd);
+				
+			
 		  });
 	</script>
 	</head>
@@ -68,7 +80,8 @@
 								</td>
 								<td>
 									<form action="controller.do?command=AlterarItem" method="post">
-										<input type="number" class="checkBox qtdProd"  id="quantidade" name="quantidade" value="${produto.quantidade}" min="1" max="20"/>
+										<input type="number" class="checkBox8 qtdProd"  id="quantidade" name="quantidade" value="${produto.quantidade}" min="1" max="20"/>
+										<input type="hidden" name="qtdEstoque" id="qtdEstoque" value="${produto.produto.quantidadeEstoque}"/>
 										<input type="hidden" name="idPedido" value="${produto.idPedido}"/>
 										<input type="hidden" name="idProduto" value="${produto.idProduto}"/>
 									</form>

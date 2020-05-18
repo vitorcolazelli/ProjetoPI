@@ -74,7 +74,7 @@ public class ProdutoDAO {
 	public Produto carregarProduto(int idProduto) throws IOException{
 		Produto produto = new Produto();
 		produto.setIdProduto(idProduto);
-		String sqlSelect = "SELECT nome, valor, capacidade, cor, imagem_produto FROM Produto WHERE Produto.idProduto = ?";
+		String sqlSelect = "SELECT nome, valor, capacidade, cor, imagem_produto, quantidadeEstoque FROM Produto WHERE Produto.idProduto = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, produto.getIdProduto());
@@ -84,6 +84,7 @@ public class ProdutoDAO {
 					produto.setValor(rs.getDouble("valor"));
 					produto.setCapacidade(rs.getString("capacidade"));
 					produto.setCor(rs.getString("cor"));
+					produto.setQuantidadeEstoque(rs.getInt("quantidadeEstoque"));
 					try {
 						Blob blob = rs.getBlob("imagem_produto");
 		                 
@@ -114,6 +115,7 @@ public class ProdutoDAO {
 					produto.setCapacidade(null);
 					produto.setCor(null);
 					produto.setImagem_produto(null);
+					produto.setQuantidadeEstoque(-1);
 				}
 				
 			} catch (SQLException e) {
@@ -327,5 +329,26 @@ public class ProdutoDAO {
 		}
 		return lista;
 	}
+	public boolean atualizarEstoque(Produto produto, int qtde) {
+        String sqlUpdate = "UPDATE produto SET quantidadeEstoque=quantidadeEstoque-? WHERE idProduto=? AND (quantidadeEstoque-?)>=0";
+        try (Connection conn = ConnectionFactory.obtemConexao();
+                PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+            stm.setInt(1, qtde);
+            stm.setInt(2, produto.getIdProduto());
+            stm.setInt(3, qtde);
+            int rows_updated = stm.executeUpdate();
+            System.out.println(stm);
+            
+            if (rows_updated > 0 ) {
+            	System.out.print("Funcionou: " + rows_updated + " sqlUpdate: " + sqlUpdate + "\n");
+            	return true;
+            }
+            System.out.print("Nao Funcionou: " + rows_updated + " sqlUpdate: " +  sqlUpdate  + "\n");
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 	
 }

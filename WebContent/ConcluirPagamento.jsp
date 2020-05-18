@@ -459,7 +459,9 @@
 				<c:set var="frete" value="${16}" />
 				<c:set var="subtotal" value="${0}" />
 				<c:forEach var="produto" items="${listaCarrinho}">
-
+					<input type="hidden" name="idProduto" value="${produto.produto.idProduto}">
+					<input type="hidden" name="QuantidadeEstq" value="${produto.produto.quantidadeEstoque}">
+					<input type="hidden" name="Quantidade" value="${produto.quantidade}">
 					<div class="clear"></div>
 					<c:set var="total"
 						value="${total + (produto.produto.valor*produto.quantidade)}" />
@@ -565,8 +567,7 @@
 							href="controller.do?command=CarregarPedido">‹ Voltar para o
 							frete</a>
 						<button class="btn btn-danger btn-lg pagto"
-							value="FinalizarCompra" name="command" role="button">Finalizar
-							Compra</button>
+							value="FinalizarCompra" name="command" role="button" href="controller.do?command=AlterarEstoque">Finalizar Compra</button>
 					</div>
 				</div>
 			<div class="itens">

@@ -15,7 +15,10 @@ public class ProdutoService {
     public void atualizar(Produto produto){
         dao.atualizar(produto);
     }
-
+    public boolean atualizarEstoque(Produto produto, int quantidade){
+		 return dao.atualizarEstoque(produto, quantidade);
+    }
+    
     public void excluir(int idProduto){
         dao.excluir(idProduto);
     }
