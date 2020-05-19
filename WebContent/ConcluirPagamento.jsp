@@ -45,7 +45,7 @@
 				currency : 'BRL',
 				minimumFractionDigits : 2
 			}).format(p);
-			$(this).text(nval);
+			$(this).text($(this).val()+' - '+nval+ ' sem juros');
 		}
 
 		$('.preco1').each(changeval).on('change', changeval);
@@ -450,7 +450,6 @@
 										<option value="Wallis e Futuna">Wallis e Futuna</option>
 										<option value="Zimbabwe">Zimbabwe</option>
 										<option value="Zâmbia">Zâmbia</option>
-
 									</select>
 								</div>
 								
