@@ -22,6 +22,10 @@ public class PedidoService {
 		dao.atualizarAdm(pedido);
 	}
 	
+	public void atualizarPedidoEnviado(Pedido pedido) {
+		dao.atualizarPedidoEnviado(pedido);
+	}
+	
 	public void atualizarItem(ItemPedido itemPedido) {
 		dao.atualizarItem(itemPedido);
 	}

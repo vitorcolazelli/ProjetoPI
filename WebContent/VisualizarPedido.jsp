@@ -125,7 +125,7 @@
 						<button id="btn${pedido.idPedido }%>" type="button"
 							class="btn btn-danger btn-sm deleteModal" data-toggle="modal"
 							data-target="#delete-modal" data-cliente="${pedido.idPedido }">Excluir</button>
-						<a href="controller.do?command=ListarPedido"
+						<a href="controller.do?command=EnviarPedido"
 							class="btn btn-success btn-sm" role="button" aria-pressed="true">Enviar
 							Pedido</a> <a href="controller.do?command=ListarPedido"
 							class="btn btn-light btn-sm" role="button" aria-pressed="true">Voltar</a>

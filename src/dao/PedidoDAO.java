@@ -35,7 +35,7 @@ public class PedidoDAO {
 	}
 
 	public void atualizar(Pedido pedido) {
-		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = 'pedido' ,  dataPedido = now() WHERE idPedido=?";
+		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = 'enviado' ,  dataPedido = now() WHERE idPedido=?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
 			stm.setInt(1, pedido.getCliente_idCliente());
@@ -62,6 +62,22 @@ public class PedidoDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void atualizarPedidoEnviado(Pedido pedido) {
+		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = 'enviado' WHERE idPedido=?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setInt(1, pedido.getCliente_idCliente());
+			stm.setInt(2, pedido.getFormaPagamento_idPagamento());
+			stm.setDouble(3, pedido.getValorTotal());
+			stm.setString(4, pedido.getStatus());
+			stm.setInt(5, pedido.getIdPedido());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 	public void excluir(int idPedido) {
 		String sqlDelete = "DELETE FROM pedido WHERE idPedido = ?";
@@ -120,7 +136,7 @@ public class PedidoDAO {
 	public ArrayList<Pedido> listarPedidos() {
 		Pedido pedido;
 		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT * FROM Pedido WHERE status='pedido'";
+		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado')";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			try (ResultSet rs = stm.executeQuery();) {
@@ -202,7 +218,7 @@ public class PedidoDAO {
 	public ArrayList<Pedido> VisualizarPedidos(int idCliente) {
 		Pedido pedido;
 		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('pedido','enviado') AND cliente_idCliente = ?";
+		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado') AND cliente_idCliente = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, idCliente);
@@ -228,7 +244,7 @@ public class PedidoDAO {
 	
 	public Pedido listarPedidosCliente(int idCliente, int idPedido) {
 		Pedido pedido = new Pedido();
-		String sqlSelect = "SELECT * FROM Pedido WHERE status = 'pedido' AND cliente_idCliente = ? AND idPedido= ?";
+		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado') AND cliente_idCliente = ? AND idPedido= ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, idCliente);
