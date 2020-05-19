@@ -36,7 +36,7 @@
 				</div>
 								<div class="row">
 					<div class="form-group col-md-12">
-						<label for="senha"><font color="grey" size="2">Ainda não possui cadastro?<a href="TelaCadastroCliente.jsp"> Clique Aqui</a></font></label>
+						<label for="senha"><font color="grey" size="2">Ainda não possui cadastro? <a href="TelaCadastroCliente.jsp">Clique Aqui</a></font></label>
 					</div>
 				</div>
 				<hr />

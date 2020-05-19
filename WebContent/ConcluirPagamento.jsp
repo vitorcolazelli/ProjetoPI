@@ -465,7 +465,7 @@
 					<c:set var="total"
 						value="${total + (produto.produto.valor*produto.quantidade)}" />
 					<c:set var="subtotal" value="${total + frete}" />
-				
+							</c:forEach>
 							<div class="row">
 							<div class="form-group col-md-4">
 							<label for="QtdParcela">Qtd de Parcelas </label></div>
@@ -487,7 +487,6 @@
 								</select>
 								</div>
 							</div>
-							</c:forEach>
 						</div>
 
 						<div id="panelC" style="display: none">
