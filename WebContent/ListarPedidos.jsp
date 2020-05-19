@@ -140,7 +140,9 @@
 									<button id="btn${pedido.idPedido }%>" type="button"
 										class="btn btn-danger btn-xs deleteModal" data-toggle="modal"
 										data-target="#delete-modal"
-										data-cliente="${pedido.idPedido }">Excluir</button></td>
+										data-cliente="${pedido.idPedido }">Excluir</button> 
+										</td>
+								
 									</tr>
 								</c:forEach>
 							</tbody>

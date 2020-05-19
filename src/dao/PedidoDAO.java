@@ -35,7 +35,7 @@ public class PedidoDAO {
 	}
 
 	public void atualizar(Pedido pedido) {
-		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = 'enviado' ,  dataPedido = now() WHERE idPedido=?";
+		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = 'em andamento' ,  dataPedido = now() WHERE idPedido=?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
 			stm.setInt(1, pedido.getCliente_idCliente());
@@ -64,14 +64,13 @@ public class PedidoDAO {
 	}
 	
 	public void atualizarPedidoEnviado(Pedido pedido) {
-		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = 'enviado' WHERE idPedido=?";
+		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = 'enviado' ,  dataPedido = now() WHERE idPedido=?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
 			stm.setInt(1, pedido.getCliente_idCliente());
 			stm.setInt(2, pedido.getFormaPagamento_idPagamento());
 			stm.setDouble(3, pedido.getValorTotal());
-			stm.setString(4, pedido.getStatus());
-			stm.setInt(5, pedido.getIdPedido());
+			stm.setInt(4, pedido.getIdPedido());
 			stm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();

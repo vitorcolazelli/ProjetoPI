@@ -18,7 +18,7 @@ public class EnviarPedido implements Command {
 			throws ServletException, IOException {
 		String pIdPedido = request.getParameter("idPedido");
 		String pIdCliente = request.getParameter("idCliente");
-		String pValorTotal = request.getParameter("valorTota l");
+		String pValorTotal = request.getParameter("valorTotal");
 		String pFormaPagamento = request.getParameter("formaPagamento_idPagamento");
 		String pStatus = request.getParameter("status");
 		
