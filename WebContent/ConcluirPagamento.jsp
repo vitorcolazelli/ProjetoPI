@@ -587,7 +587,7 @@
 			<c:set var="frete" value="${15}"/>
 			</c:if>
 			<c:if test="${cliente.estado!='SP'}">
-			<c:set var="frete" value="${25}"/>
+			<c:set var="frete" value="${30}"/>
 			</c:if>
 				<c:set var="subtotal" value="${0}" />
 				<c:forEach var="produto" items="${listaCarrinho}">
