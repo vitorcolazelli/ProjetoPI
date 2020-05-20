@@ -123,12 +123,14 @@
 			<br>
 			<h3>Informações do Endereço</h3>
 			<br>
-			<div class="row">
+						<div class="row">
 				<div class="form-group col-md-12">
-					<label for="pais">País: </label> 
-					<input value="${cliente.pais}" type="text" class="form-control"
-						name="pais" id="pais" maxlength="50" />
+					<label for="pais">País </label>
+					<select class="form-control" name="pais" id="pais" required>
+						<option value="Brasil">Brasil</option>
+					</select>
 				</div>
+
 			</div>
 			<div class="row">
 				<div class="form-group col-md-6">

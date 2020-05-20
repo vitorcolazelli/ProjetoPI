@@ -142,7 +142,7 @@ public class PedidoDAO {
 	public ArrayList<Pedido> listarPedidos() {
 		Pedido pedido;
 		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado', 'cancelado')";
+		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado', 'cancelado') ORDER BY Status DESC";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			try (ResultSet rs = stm.executeQuery();) {
