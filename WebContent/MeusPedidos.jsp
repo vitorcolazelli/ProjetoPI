@@ -72,7 +72,9 @@
                 <hr>
     				<a class="btn btn-dark" href="controller.do?command=ListarPedidoCliente" role="button">Voltar aos Meus Pedidos</a>
                    	<a class="btn btn-dark" href="MinhaConta.jsp" role="button">Voltar à Minha Conta</a>
-                
+                	<c:if test="${carrinho.status=='enviado'}">
+                	<a class="btn btn-dark" href="https://www2.correios.com.br/sistemas/rastreamento/default.cfm" role="button">Rastrear Pedido</a>
+               		</c:if>
                 <div class="valores">
                 	<h3 class="tituloResumo">Resumo do Pedido</h3>
                 	<hr>

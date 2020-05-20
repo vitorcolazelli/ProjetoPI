@@ -58,7 +58,7 @@
 					</c:choose>
 					
 					<li class="nav-item"><a class="nav-link" href="controller.do?command=Carrinho">
-							<i class="material-icons icon">shopping_cart</i>Carrinho
+							<i class="material-icons icon">shopping_cart</i>Carrinho 
 					</a></li>
 					<li class="nav-item seila"><a class="nav-link"
 						href="index.jsp"><i class="material-icons icon">home</i>Pagina
