@@ -79,7 +79,7 @@
 		<div class="container">
 			<div class="principal" align="center">
 				<div class="container">
-					<a href="TelaInicial.jsp"><img class="imgLogo"
+					<a href="index.jsp"><img class="imgLogo"
 						src="./imagens/logo.png"></a>
 					<div class="caminho">
 						<a class="linkHead" href="controller.do?command=Carrinho"><span>Carrinho</span></a>
@@ -97,11 +97,12 @@
 								type="radio" value="2" name="pagamento" id="flip" required>
 							<span class="CartaoS">Cartão</span>
 						</div>
-						<div class="Boleto">
+						<div class=transf>
 							<i class="material-icons icon">monetization_on</i> <input
 								type="radio" value="1" name="pagamento" id="flip1"> <span
 								class="BoletoS">Transferência online</span>
 						</div>
+
 						<hr>
 						<div id="panelT" style="display: none">
 							<div class="row">
@@ -522,17 +523,29 @@
 									<div class="TituloTrf">Dados do Cliente:</div>
 								</div>
 							</div>
-								<div class="row">
+							
+							<div class="row">
+								<div class="form-group col-md-12">
+									<label class="cpfC" for="modelo">Valor da Transferência: </label>
+								</div>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-12">
+									<p class="vlrtrsf preco">${subtotal}</p>
+								</div>
+							</div>
+							<div class="row">
 								<div class="form-group col-md-12">
 									<label class="cpfC" for="modelo">CPF da Conta: </label>
 								</div>
-								</div>
-								<div class="row">
+							</div>
+							<div class="row">
 								<div class="form-group col-md-12">
 									<input type="text" class="form-control" name="CPF" id="CPF"
 										 maxlength="3" placeholder="CPF do Titular da conta" />
 								</div>
 							</div>
+							
 							<div class="row">
 								<div class="form-group col-md-12">
 									<label class="cpfC" for="modelo">Número da Conta: </label>
@@ -570,7 +583,12 @@
 				</div>
 			<div class="itens">
 				<c:set var="total" value="${0}" />
-				<c:set var="frete" value="${16}" />
+				<c:if test="${cliente.estado=='SP'}">
+			<c:set var="frete" value="${15}"/>
+			</c:if>
+			<c:if test="${cliente.estado!='SP'}">
+			<c:set var="frete" value="${25}"/>
+			</c:if>
 				<c:set var="subtotal" value="${0}" />
 				<c:forEach var="produto" items="${listaCarrinho}">
 				<input type="hidden" name="idPedido" value="${produto.idPedido}" />

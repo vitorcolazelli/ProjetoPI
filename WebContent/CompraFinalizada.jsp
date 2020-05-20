@@ -37,7 +37,7 @@
 		<div class="container">
 			<div class="principal" align="center">
 				<div class="container">
-					<a href="TelaInicial.jsp"><img class="imgLogo"
+					<a href="index.jsp"><img class="imgLogo"
 						src="./imagens/logo.png"></a>
 					<div class="caminho">
 					</div>
@@ -53,7 +53,7 @@
 					<div class="divBtn">
 						<a class="btn btn-dark btn-lg btn-block pagto" href="controller.do?command=ListarPedidoCliente"><strong>Visualizar meus pedidos</strong></a>
 					
-						<a class="btn btn-danger btn-lg btn-block pagto" href="TelaInicial.jsp"><strong>Voltar para o site</strong></a>
+						<a class="btn btn-danger btn-lg btn-block pagto" href="index.jsp"><strong>Voltar para o site</strong></a>
 
 					</div>
 

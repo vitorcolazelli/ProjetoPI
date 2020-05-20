@@ -79,7 +79,7 @@ public class FazerLoginCli implements Command{
 			session.setAttribute("idCliente", cliente.getIdCliente());
 			session.setAttribute("logNome", cliente.getNome());
 			System.out.println("logou" + cliente);
-			response.sendRedirect("TelaInicial.jsp");
+			response.sendRedirect("index.jsp");
 			
 		}
 		else if(adm.validar(administrador)) {

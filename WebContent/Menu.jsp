@@ -12,12 +12,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12" align="center">
-					<a href="TelaInicial.jsp"><img src="./imagens/logo.png" alt="logo"></a>
+					<a href="index.jsp"><img src="./imagens/logo.png" alt="logo"></a>
 				</div>
 				<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6" align="center">
 					<nav class="desktop-menu" >
 					<ul>
-						<li><a href="TelaInicial.jsp">PAGINA INICIAL</a></li> 
+						<li><a href="index.jsp">PAGINA INICIAL</a></li> 
 						<li><a href="controller.do?command=ListarColecao&v=1">COLEÇÃO</a></li>
 						<li><a href="SobreNos.jsp">SOBRE NOS</a></li>
 						<c:choose>

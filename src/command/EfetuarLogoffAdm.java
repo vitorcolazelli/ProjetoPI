@@ -32,7 +32,7 @@ public class EfetuarLogoffAdm implements Command {
 			session.invalidate();
 			System.out.println("Logoff efetuado com sucesso!!	");
 		}	
-		response.sendRedirect("TelaInicial.jsp");
+		response.sendRedirect("index.jsp");
 	}
 	
 

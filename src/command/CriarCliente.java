@@ -72,7 +72,7 @@ public class CriarCliente implements Command {
 			System.out.println("logou" + cliente);
 			
 		}
-		view = request.getRequestDispatcher("TelaInicial.jsp");
+		view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	}
 }

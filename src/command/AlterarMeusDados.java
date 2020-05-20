@@ -65,7 +65,7 @@ public class AlterarMeusDados implements Command {
 		session.setAttribute("idCliente", cliente.getIdCliente());
 		session.setAttribute("logNome", cliente.getNome());
 		request.setAttribute("cliente", cliente);
-		view = request.getRequestDispatcher("TelaInicial.jsp");
+		view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
 	}
 }

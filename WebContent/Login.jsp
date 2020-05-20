@@ -45,7 +45,7 @@
 						<div class="md-col-12">
 							<button type="submit" class="botao" name="command"
 								value="FazerLoginCli">Entrar</button>
-							<a href="TelaInicial.jsp" class="btn btndefault">Cancelar</a>
+							<a href="index.jsp" class="btn btndefault">Cancelar</a>
 						</div>
 					</div>
 				</div>

@@ -33,7 +33,7 @@
 		<div class="TopoApple">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="TelaInicial.jsp">Pagina Inicial</a></li>
+					<li class="breadcrumb-item"><a href="index.jsp">Pagina Inicial</a></li>
 					<li class="breadcrumb-item active" aria-current="page">${colecao.nome}</li>
 				</ol>
 			</nav>

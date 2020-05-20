@@ -34,7 +34,7 @@
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" data-toggle="dropdown"
 								id="navDrop"> <i class="material-icons icon">person</i> <c:out
-										value="${logNome}"></c:out></a>
+										value="Olá, ${logNome}!"></c:out></a>
 								<div class="dropdown-menu">
 									<a class="dropdown-item" href="MinhaConta.jsp">Minha conta</a> <a
 										class="dropdown-item"
@@ -49,7 +49,7 @@
 							<li class="nav-item dropdown"><a
 								class="nav-link dropdown-toggle" data-toggle="dropdown"
 								id="navDrop"> <i class="material-icons icon">person</i> <c:out
-										value="${logNomeAdm}"></c:out></a>
+										value="Olá, ${logNomeAdm}!"></c:out></a>
 								<div class="dropdown-menu">
 									 <a	class="dropdown-item"
 										href="controller.do?command=EfetuarLogoffAdm">Fazer Logoff</a>
@@ -61,7 +61,7 @@
 							<i class="material-icons icon">shopping_cart</i>Carrinho
 					</a></li>
 					<li class="nav-item seila"><a class="nav-link"
-						href="TelaInicial.jsp"><i class="material-icons icon">home</i>Pagina
+						href="index.jsp"><i class="material-icons icon">home</i>Pagina
 							Inicial</a></li>
 					<li class="nav-item seila"><a class="nav-link"
 						href="controller.do	?command=ListarColecao&v=1"><i class="material-icons icon">android</i>Coleção</a></li>

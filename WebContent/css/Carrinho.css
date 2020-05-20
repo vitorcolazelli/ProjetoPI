@@ -72,3 +72,6 @@ strong:hover{
 	vertical-align: middle !important;
 }
 
+.nome:hover{
+	text-decoration: none;
+}

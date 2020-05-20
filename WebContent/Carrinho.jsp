@@ -28,7 +28,6 @@
 			     	     
 			var changeqtd = function (ev){
 				if (parseInt($("#quantidade").val()) > parseInt($("#qtdEstoque").val())) {
-					alert(qtdeOrignal + " A quantidade solicitada [" + $("#quantidade").val() + "] nao esta disponivel. Verifique!");
 					$("#quantidade").val(qtdeOrignal);
 					qtdeOrignal = $("#quantidade").val(); 
 					return false;
@@ -80,7 +79,7 @@
 								</td>
 								<td>
 									<form action="controller.do?command=AlterarItem" method="post">
-										<input type="number" class="checkBox8 qtdProd"  id="quantidade" name="quantidade" value="${produto.quantidade}" min="1" max="20"/>
+										<input type="number" class="checkBox8 qtdProd"  id="quantidade" name="quantidade" value="${produto.quantidade}" min="1" max="${produto.produto.quantidadeEstoque}"/>
 										<input type="hidden" name="qtdEstoque" id="qtdEstoque" value="${produto.produto.quantidadeEstoque}"/>
 										<input type="hidden" name="idPedido" value="${produto.idPedido}"/>
 										<input type="hidden" name="idProduto" value="${produto.idProduto}"/>
@@ -99,7 +98,7 @@
 				<div class="divBtn">
 					<p>Subtotal <strong><span class="preco"><c:out value="${total}"/></span></strong></p>
 					<p class="frete">Frete calculado no checkout</p>
-					<a class="btn btn-outline-danger" href="TelaInicial.jsp" role="button">VOLTAR À LOJA</a>
+					<a class="btn btn-outline-danger" href="index.jsp" role="button">VOLTAR À LOJA</a>
 					<a class="btn btn-outline-danger" href="controller.do?command=CarregarPedido" role="button">FINALIZAR PEDIDO</a>
 				<br><br><br>		
 				</div>
@@ -108,7 +107,7 @@
 			<c:otherwise>
 				<div class ="carrinhoVazio">
 					<p>Seu carrinho de compras está vazio.</p>
-				 	<a class ="btn btn-outline-success Botao-xb btn-vazio" href="TelaInicial.jsp" >Voltar às Compras</a>	
+				 	<a class ="btn btn-outline-success Botao-xb btn-vazio" href="index.jsp" >Voltar às Compras</a>	
 				</div>
 			</c:otherwise>
 		</c:choose>

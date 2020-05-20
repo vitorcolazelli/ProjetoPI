@@ -63,7 +63,7 @@
 			<c:otherwise>
 				<div class ="carrinhoVazio">
 					<p class="msgVazio">Voce ainda nao realizou nenhum pedido</p>
-				 	<a class ="btn btn-outline-success Botao-xb btn-vazio" href="TelaInicial.jsp" >Voltar às Compras</a>	
+				 	<a class ="btn btn-outline-success Botao-xb btn-vazio" href="index.jsp" >Voltar às Compras</a>	
 				</div>
 			</c:otherwise>
 		</c:choose>

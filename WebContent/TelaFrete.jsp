@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="principal" align="center">
 			<div class="container">
-				<a href="TelaInicial.jsp"><img class="imgLogo" src="./imagens/logo.png" ></a>
+				<a href="index.jsp"><img class="imgLogo" src="./imagens/logo.png" ></a>
 				<div class="caminho">
 					<a class="linkHead" href="controller.do?command=Carrinho"><span>Carrinho</span></a> › 
 					<a class="linkHead" href="controller.do?command=CarregarPedido"><span>Frete</span></a> › <span class="pagmt">Pagamento</span>
@@ -48,7 +48,12 @@
 		</div>
 		<div class="itens">
 			<c:set var="total" value="${0}"/>
-			<c:set var="frete" value="${16}"/>
+			<c:if test="${cliente.estado=='SP'}">
+			<c:set var="frete" value="${15}"/>
+			</c:if>
+			<c:if test="${cliente.estado!='SP'}">
+			<c:set var="frete" value="${25}"/>
+			</c:if>
 			<c:set var="subtotal" value="${0}"/>
 			<c:forEach var="produto" items	="${listaCarrinho}">
 				<div class="prod">

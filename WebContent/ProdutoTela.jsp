@@ -35,7 +35,7 @@
 			<div class="TopoProduto">
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="TelaInicial.jsp">Pagina Inicial</a></li>
+						<li class="breadcrumb-item"><a href="index.jsp">Pagina Inicial</a></li>
 						<li class="breadcrumb-item"><a href="controller.do?command=ListarColecao&v=1">Coleções</a></li>
 						<li class="breadcrumb-item active" aria-current="page">${produto.nome}</li>
 					</ol>

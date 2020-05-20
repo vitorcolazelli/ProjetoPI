@@ -55,7 +55,7 @@ strong.nome:hover{
 .Cartao{
     display: inline-block;
 }
-.Boleto{
+.transf{
     display: inline-block;
     margin-left:90px;
 }
@@ -173,4 +173,10 @@ select{
 .cpfC{
     font-size:19px;
     font-weight:bold;
+}
+
+.vlrtrsf{
+	float: left;
+	font-weight: normal;
+	font-size: 20px;
 }
