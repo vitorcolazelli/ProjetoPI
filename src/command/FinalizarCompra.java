@@ -20,25 +20,14 @@ public class FinalizarCompra implements Command {
 		int idCliente = (Integer)request.getSession().getAttribute("idCliente");
 		String idFormaPagamento = request.getParameter("pagamento");	
 		String valorTotal = request.getParameter("total");
-		String pIdProduto = request.getParameter("idProduto");
-		String pQuantidade = request.getParameter("Quantidade");
+		String[] idProdutos = request.getParameterValues("idProduto");
+		String[] qtdeEstoqProdutos = request.getParameterValues("Quantidade");
+		
+		int pedidosOK = 0;
 		int idPedido = -1;
 		int idProduto = -1;
-		int quantidade = -1;
-		if(quantidade == 0) {
-			
-		}
+		int quantidade = -1;	
 		
-		try {
-			quantidade = Integer.parseInt(pQuantidade);
-		} catch (NumberFormatException e) {
-		
-		}
-		try {
-			idProduto = Integer.parseInt(pIdProduto);
-		} catch (NumberFormatException e) {
-		
-		}
 		try {
 			idPedido = Integer.parseInt(pIdPedido);
 		} catch (NumberFormatException e) {
@@ -59,36 +48,53 @@ public class FinalizarCompra implements Command {
 		
 		}
 		
-		Produto produto = new Produto();
-		produto.setQuantidadeEstoque(quantidade);
-		produto.setIdProduto(idProduto);
-		
 		Pedido pedido = new Pedido();
 		pedido.setIdPedido(idPedido);
 		pedido.setCliente_idCliente(idCliente);
 		pedido.setFormaPagamento_idPagamento(pagamento);
 		pedido.setValorTotal(total);
 		
-		ProdutoService ps = new ProdutoService();
-		
-		if (quantidade >= 0 ) {
-			System.out.println("Quantidade: " +quantidade);
-			if (ps.atualizarEstoque(produto, quantidade)) {
-			  //OK
-				PedidoService cs = new PedidoService();
-				RequestDispatcher view = null;
-				
-				cs.atualizar(pedido);
-				request.setAttribute("pedido", pedido);
-				view = request.getRequestDispatcher("CompraFinalizada.jsp");
-				view.forward(request, response);
-			}else {
-			  //NOK
-				RequestDispatcher viewErro = null;
-				viewErro = request.getRequestDispatcher("CompraFinalizadaErro.jsp");
-                viewErro.forward(request, response);				
-			};
+
+		for (int i=0;i< idProdutos.length;i++) {
+			System.out.println("Produto: " + idProdutos[i] + " - Quantidade: " + qtdeEstoqProdutos[i]);
+			try {
+				idProduto = Integer.parseInt(idProdutos[i]);
+			} catch (NumberFormatException e) {
+			
+			}
+			try {
+				quantidade = Integer.parseInt(qtdeEstoqProdutos[i]);
+			} catch (NumberFormatException e) {
+			
+			}
+			
+			
+			Produto produto = new Produto();
+			produto.setQuantidadeEstoque(quantidade);
+			produto.setIdProduto(idProduto);
+
+			ProdutoService ps = new ProdutoService();
+			
+			if (quantidade >= 0 ) {
+				System.out.println("Quantidade: " +quantidade);
+				if (ps.atualizarEstoque(produto, quantidade)) {
+				  //OK
+					PedidoService cs = new PedidoService();
+					
+					cs.atualizar(pedido);
+					request.setAttribute("pedido", pedido);
+					pedidosOK++;
+				};
+			}			
 		}
-		
+		if (pedidosOK == idProdutos.length) {
+			RequestDispatcher view = null;
+			view = request.getRequestDispatcher("CompraFinalizada.jsp");
+			view.forward(request, response);				
+		}else {
+			RequestDispatcher viewErro = null;
+			viewErro = request.getRequestDispatcher("CompraFinalizadaErro.jsp");
+            viewErro.forward(request, response);								
+		}
 	}
 }
