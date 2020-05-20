@@ -47,18 +47,43 @@
 								name="valorTotal" id="valorTotal" maxlength="50" />
 						</div>
 					</div>
-								<div class="row">
+					<div class="row">
 						<div class="form-group col-md-12 linha">
-							<label for="formaPagamento_idPagamento">Forma de Pagamento:
-							</label> <input value="${pedido.formaPagamento_idPagamento}" type="text" class="form-control"
-								name="formaPagamento_idPagamento" id="formaPagamento_idPagamento" maxlength="50" />
+							<label for="formaPagamento_idPagamento">Forma de Pagamento:</label> 
+							<c:if test="${pedido.formaPagamento_idPagamento==1}">
+								<select class="form-control" name="formaPagamento_idPagamento" id="formaPagamento_idPagamento">
+									<option value="1">Transferência bancária</option>
+									<option value="2">Cartão de crédito</option>
+								</select>
+							</c:if>
+							<c:if test="${pedido.formaPagamento_idPagamento==2}">
+								<select class="form-control" name="formaPagamento_idPagamento" id="formaPagamento_idPagamento">
+									<option value="2">Cartão de crédito</option>
+									<option value="1">Transferência bancária</option>
+								</select>
+							</c:if>
 						</div>
 					</div>
 					<div class="row">
 						<div class="form-group col-md-12 linha">
 							<label for="status">Status:
-							</label> <input value="${pedido.status}" type="text" class="form-control"
-								name="status" id="status" maxlength="50" />
+							</label> 
+							<c:if test="${pedido.status=='enviado'}">
+								<select class="form-control" name="status" id="status">
+									<option>enviado</option>
+								</select>
+							</c:if>
+							<c:if test="${pedido.status=='em andamento'}">
+								<select class="form-control" name="status" id="status">
+									<option>em andamento</option>
+									<option>enviado</option>
+								</select>
+							</c:if>
+							<c:if test="${pedido.status=='cancelado'}">
+								<select class="form-control" name="status" id="status">
+									<option>cancelado</option>
+								</select>
+							</c:if>
 						</div>
 					</div>
 					<hr />

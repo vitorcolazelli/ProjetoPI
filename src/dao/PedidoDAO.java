@@ -48,6 +48,28 @@ public class PedidoDAO {
 		}
 	}
 	
+	public void atualizarCancel(Pedido pedido) {
+		String sqlUpdate = "UPDATE pedido SET status = 'cancelado' ,  dataPedido = now() WHERE idPedido=?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setInt(1, pedido.getIdPedido());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void atualizarEnviar(Pedido pedido) {
+		String sqlUpdate = "UPDATE pedido SET status = 'enviado', dataPedido = now() WHERE idPedido=?";
+		try (Connection conn = ConnectionFactory.obtemConexao();
+				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+			stm.setInt(1, pedido.getIdPedido());
+			stm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void atualizarAdm(Pedido pedido) {
 		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = ?  WHERE idPedido=?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -63,21 +85,6 @@ public class PedidoDAO {
 		}
 	}
 	
-	public void atualizarPedidoEnviado(Pedido pedido) {
-		String sqlUpdate = "UPDATE pedido SET cliente_idCliente = ?, f_pagamento_idPagamento = ? , valorTotal=?, status = 'enviado' ,  dataPedido = now() WHERE idPedido=?";
-		try (Connection conn = ConnectionFactory.obtemConexao();
-				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
-			stm.setInt(1, pedido.getCliente_idCliente());
-			stm.setInt(2, pedido.getFormaPagamento_idPagamento());
-			stm.setDouble(3, pedido.getValorTotal());
-			stm.setInt(4, pedido.getIdPedido());
-			stm.execute();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-
 	public void excluir(int idPedido) {
 		String sqlDelete = "DELETE FROM pedido WHERE idPedido = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
@@ -135,7 +142,7 @@ public class PedidoDAO {
 	public ArrayList<Pedido> listarPedidos() {
 		Pedido pedido;
 		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado')";
+		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado', 'cancelado')";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			try (ResultSet rs = stm.executeQuery();) {
@@ -217,7 +224,7 @@ public class PedidoDAO {
 	public ArrayList<Pedido> VisualizarPedidos(int idCliente) {
 		Pedido pedido;
 		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado') AND cliente_idCliente = ?";
+		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado', 'cancelado') AND cliente_idCliente = ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, idCliente);
@@ -243,7 +250,7 @@ public class PedidoDAO {
 	
 	public Pedido listarPedidosCliente(int idCliente, int idPedido) {
 		Pedido pedido = new Pedido();
-		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado') AND cliente_idCliente = ? AND idPedido= ?";
+		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado', 'cancelado') AND cliente_idCliente = ? AND idPedido= ?";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, idCliente);

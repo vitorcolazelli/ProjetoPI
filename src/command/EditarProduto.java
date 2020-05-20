@@ -26,8 +26,6 @@ public class EditarProduto implements Command {
 			
 		}
 		
-		
-		
 		Produto produto = new Produto();
 		produto.setIdProduto(idProduto);
 

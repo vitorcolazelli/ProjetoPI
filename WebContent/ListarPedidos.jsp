@@ -71,6 +71,9 @@
 					<div class="titulo">Gerenciamento de Pedidos</div>
 				</div>
 			</div>
+			<c:if test="${not empty deletePedido}">
+				<div class="alert alert-danger" role="alert"> ${deletePedido}</div> 
+			</c:if>
 			<hr>
 			<div class="botoes">
 				<div id="top" class="row">
@@ -128,7 +131,14 @@
 								<td>${pedido.idPedido }</td>
 								<td class="preco">${pedido.valorTotal }</td>
 								<td>${pedido.cliente_idCliente }</td>
-								<td>${pedido.formaPagamento_idPagamento }</td>
+								<td>
+									<c:if test="${pedido.formaPagamento_idPagamento==1}">
+										Transferência bancária
+									</c:if>
+									<c:if test="${pedido.formaPagamento_idPagamento==2}">
+										Cartão de crédito
+									</c:if>
+								</td>
 								<td>${pedido.status }</td>
 								<td>${pedido.dataPedido }</td>
 								<td class="actions"><a class="btn btn-success btn-xs"

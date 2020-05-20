@@ -69,6 +69,12 @@
 		<h3 class="page-header" align="center">Visualizar Informações do
 			Pedido</h3>
 		<br>
+		<c:if test="${not empty pedidoEnv}">
+				<div class="alert alert-success" role="alert"> ${pedidoEnv}</div> 
+		</c:if>
+		<c:if test="${not empty alterPedido}">
+				<div class="alert alert-warning" role="alert"> ${alterPedido}</div> 
+		</c:if>
 		<form action="controller.do" method="post">
 			<div class="row">
 				<div class="form-group col-md-12 linha">
@@ -96,7 +102,12 @@
 				<div class="form-group col-md-12">
 					<p>
 						<strong>Forma de Pagamento: </strong> <br>
-						${pedido.formaPagamento_idPagamento}
+						<c:if test="${pedido.formaPagamento_idPagamento==1}">
+										Transferência bancária
+									</c:if>
+									<c:if test="${pedido.formaPagamento_idPagamento==2}">
+										Cartão de crédito
+									</c:if>
 					</p>
 				</div>
 			</div>
@@ -125,12 +136,12 @@
 						<button id="btn${pedido.idPedido }%>" type="button"
 							class="btn btn-danger btn-sm deleteModal" data-toggle="modal"
 							data-target="#delete-modal" data-cliente="${pedido.idPedido }">Excluir</button>
-						<a href="controller.do?command=EnviarPedido"
-							class="btn btn-success btn-sm" role="button" aria-pressed="true">Enviar
-							Pedido</a> 
+						<c:if test="${pedido.status=='em andamento'}">
+							<a class="btn btn-success btn-sm"
+								href="controller.do?command=EnviarPedido&idPedido=${pedido.idPedido}">Enviar Pedido</a>
+						</c:if>
 						<a href="controller.do?command=ListarPedido"
 							class="btn btn-light btn-sm" role="button" aria-pressed="true">Voltar</a>
-
 					</div>
 				</div>
 			</div>

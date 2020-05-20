@@ -63,6 +63,7 @@ public class AlterarPedido implements Command {
 		
 		cs.atualizarAdm(pedido);
 		request.setAttribute("pedido", pedido);
+		request.setAttribute("alterPedido", "Pedido Alterado");
 		view = request.getRequestDispatcher("VisualizarPedido.jsp");
 		
 		 view.forward(request, response);

@@ -38,3 +38,11 @@
 .stats{
 	font-size: 14px;
 }
+
+.status{
+	margin-top: 20px;
+}
+
+.btn-sm{
+	float: right;
+}

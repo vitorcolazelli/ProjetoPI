@@ -49,11 +49,14 @@
 						<div class="visual">
 							<a class="btn btn-dark" href="controller.do?command=Pedidos&idPedido=${pedido.idPedido}">Visualizar Pedido</a>
 							<div class="tot ali"><strong>Total: </strong><span class="preco"> ${pedido.valorTotal}</span></div>
-							<br>
-							<br>
-							<span class="stats"><strong>Status: </strong> ${pedido.status}</span>
 						</div>
-						
+						<div class="status">
+							<span class="stats"><strong>Status: </strong> ${pedido.status}</span>
+							<c:if test="${pedido.status=='em andamento'}">
+								<a class="btn btn-danger btn-sm" href="controller.do?command=CancelarPedido&idPedido=${pedido.idPedido}">Cancelar Pedido</a>
+							</c:if>
+							
+						</div>
 					</div>
 				</c:forEach>								
 			</c:when>
