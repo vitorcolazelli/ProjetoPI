@@ -23,7 +23,12 @@ public class FinalizarCompra implements Command {
 		String[] idProdutos = request.getParameterValues("idProduto");
 		String[] qtdeEstoqProdutos = request.getParameterValues("Quantidade");
 		
+		int[] produtosOK = new int[idProdutos.length];
+		int[] quantidadeOK = new int[qtdeEstoqProdutos.length];
+		int  contador = 0;
+		
 		int pedidosOK = 0;
+		int pedidosRollback = 0;
 		int idPedido = -1;
 		int idProduto = -1;
 		int quantidade = -1;	
@@ -73,16 +78,22 @@ public class FinalizarCompra implements Command {
 			produto.setQuantidadeEstoque(quantidade);
 			produto.setIdProduto(idProduto);
 
+			
+			
 			ProdutoService ps = new ProdutoService();
 			
 			if (quantidade >= 0 ) {
 				System.out.println("Quantidade: " +quantidade);
 				if (ps.atualizarEstoque(produto, quantidade)) {
 				  //OK
+					produtosOK[contador] = idProduto;
+					quantidadeOK[contador] = quantidade;
+					
 					PedidoService cs = new PedidoService();
 					
 					cs.atualizar(pedido);
 					request.setAttribute("pedido", pedido);
+					contador++;
 					pedidosOK++;
 				};
 			}			
@@ -92,9 +103,24 @@ public class FinalizarCompra implements Command {
 			view = request.getRequestDispatcher("CompraFinalizada.jsp");
 			view.forward(request, response);				
 		}else {
+			
+			for (int i=0; i < produtosOK.length; i++) {
+				ProdutoService psRollback = new ProdutoService();
+				if (psRollback.retornarEstoque(produtosOK[i], quantidadeOK[i])) {
+					pedidosRollback++;
+				};				
+			}
+			System.out.println("pedidosRollback: " +pedidosRollback + " - pedidosOK" + pedidosOK );
+			
+			
+			
+			
+			
+			
 			RequestDispatcher viewErro = null;
 			viewErro = request.getRequestDispatcher("CompraFinalizadaErro.jsp");
             viewErro.forward(request, response);								
 		}
+
 	}
 }

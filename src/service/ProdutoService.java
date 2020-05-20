@@ -42,4 +42,9 @@ public class ProdutoService {
 		return dao.listarProdutosColecao(idColecao);
 		
 	}
+	
+    public boolean retornarEstoque(int produto, int quantidade){
+		 return dao.retornarEstoque(produto, quantidade);
+    }
+	
 }

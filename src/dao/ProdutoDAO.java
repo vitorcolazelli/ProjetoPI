@@ -350,5 +350,25 @@ public class ProdutoDAO {
             return false;
         }
     }
+	public boolean retornarEstoque(int produto, int qtde) {
+        String sqlUpdate = "UPDATE produto SET quantidadeEstoque=quantidadeEstoque+? WHERE idProduto=?";
+        try (Connection conn = ConnectionFactory.obtemConexao();
+                PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
+            stm.setInt(1, qtde);
+            stm.setInt(2, produto);
+            int rows_updated = stm.executeUpdate();
+            System.out.println(stm);
+            
+            if (rows_updated > 0 ) {
+            	System.out.print("Funcionou: " + rows_updated + " sqlUpdate: " + sqlUpdate + "\n");
+            	return true;
+            }
+            System.out.print("Nao Funcionou: " + rows_updated + " sqlUpdate: " +  sqlUpdate  + "\n");
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 	
 }
