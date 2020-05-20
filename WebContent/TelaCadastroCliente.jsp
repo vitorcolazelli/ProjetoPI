@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <!-- Adicionando Javascript -->
+
 <script type="text/javascript">
 	$(document).ready(
 			function() {
@@ -101,7 +102,6 @@
 						maxlength="50" placeholder="E-mail" />
 				</div>
 			</div>
-
 			<div class="row">
 				<div class="form-group col-md-12">
 					<label for="senha">Senha: </label> <input type="password"

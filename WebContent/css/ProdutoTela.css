@@ -80,3 +80,7 @@ select{
 .estoq{
 	color: gray;
 }
+
+a.breadcrumb-item{
+	color: black;
+}
