@@ -224,7 +224,7 @@ public class PedidoDAO {
 	public ArrayList<Pedido> VisualizarPedidos(int idCliente) {
 		Pedido pedido;
 		ArrayList<Pedido> lista = new ArrayList<>();
-		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado', 'cancelado') AND cliente_idCliente = ?";
+		String sqlSelect = "SELECT * FROM Pedido WHERE status in ('em andamento','enviado', 'cancelado') AND cliente_idCliente = ? ORDER BY Status DESC";
 		try (Connection conn = ConnectionFactory.obtemConexao();
 				PreparedStatement stm = conn.prepareStatement(sqlSelect);) {
 			stm.setInt(1, idCliente);
