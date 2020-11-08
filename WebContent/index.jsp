@@ -6,6 +6,7 @@
 <html lang="pt-br">
 	<head>
   		<title>Darkcell ! - Explosão de Preços Baixo</title>
+  		<link rel="icon" href="logo.ico" type="image/x-icon">
   		<meta charset="utf-8">
   		<meta name="viewport" content="width=device-width, initial-scale=1">
   		<link href="css/bootstrap.min.css" rel="stylesheet">

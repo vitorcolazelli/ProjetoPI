@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="logo.ico" type="image/x-icon">
 <link
 	href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@700;800&display=swap"
 	rel="stylesheet">
